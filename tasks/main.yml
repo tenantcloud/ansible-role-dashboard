@@ -1,0 +1,14 @@
+---
+- include: create-work-folder.yml
+- include: git-clone.yml
+- include: copy-idea-settings.yml
+- include: change-env-file.yml
+- include: change-nginx-settings.yml
+- include: fix-php-settings.yml
+- include: docker-compose.yml
+- include: create-minio-backet.yml
+- include: create_db_mysql.yml
+- include: copy-pre-commit-script.yml
+- include: install-and-run-composer.yml
+- include: run_yarn.yml
+- include: run_dnsmasq.yml

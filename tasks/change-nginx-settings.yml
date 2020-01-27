@@ -1,0 +1,40 @@
+---
+- name: Copy nginx configured files
+  template: src=home.{{ work_domain }}.conf dest=/usr/local/etc/nginx/servers/home.{{ work_domain }}.conf
+
+- name: Copy nginx ssl certificates
+  copy:
+    src: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/docs/installation/ssl
+    dest: /usr/local/etc/nginx
+    remote_src: true
+
+- name: Add root certificate to trust
+  command: security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /usr/local/etc/nginx/ssl/tenantcloud-rootCA.crt
+  become: true
+  changed_when: false
+
+- name: Copy root private key certificate to minio folder
+  copy:
+    src: /usr/local/etc/nginx/ssl/tenantcloud.dev.key
+    dest: /Users/{{ work_user }}/.minio/private.key
+    remote_src: true
+
+- name: Copy root public key certificate to minio folder
+  copy:
+    src: /usr/local/etc/nginx/ssl/tenantcloud.dev.crt
+    dest: /Users/{{ work_user }}/.minio/public.crt
+    remote_src: true
+
+- name: Copy nginx ssl certificates to minio folder
+  copy:
+    src: /usr/local/etc/nginx/ssl/
+    dest: /Users/{{ work_user }}/.minio
+    remote_src: true
+
+- name: Add hostname to hosts file
+  become: true
+  lineinfile:
+    state: present
+    line: 127.0.0.1 home.{{ work_domain }} {{ work_domain }} www.{{ work_domain }}
+    create: true
+    dest: /etc/hosts

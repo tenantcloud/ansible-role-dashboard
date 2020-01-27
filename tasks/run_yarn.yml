@@ -1,0 +1,7 @@
+---
+- name: Copy yarn script
+  template: src=yarn.sh dest=/Users/{{ work_user }}/{{ work_dir }} mode=0777
+
+- name: Run yarn script
+  command: zsh /Users/{{ work_user }}/{{ work_dir }}/yarn.sh
+  changed_when: false

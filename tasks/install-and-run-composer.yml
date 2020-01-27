@@ -1,0 +1,21 @@
+---
+- name: Install composer
+  shell: |
+    set -o pipefail
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+  args:
+    creates: /usr/local/bin/composer
+    warn: false
+  changed_when: false
+
+- name: Run composer install hirak/prestissimo
+  composer:
+    command: require
+    global_command: true
+    arguments: hirak/prestissimo
+
+- name: Run composer install project
+  composer:
+    command: install
+    no_dev: false
+    working_dir: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}

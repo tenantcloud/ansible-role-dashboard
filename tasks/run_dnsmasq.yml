@@ -1,0 +1,34 @@
+---
+- name: Add *.dev resolver
+  become: true
+  lineinfile:
+    state: present
+    line: nameserver 127.0.0.1
+    create: true
+    dest: /etc/resolver/dev
+
+- name: Resolve *.dev to localhost
+  lineinfile:
+    state: present
+    line: address=/dev/127.0.0.1
+    create: true
+    dest: /usr/local/etc/dnsmasq.conf
+
+- name: Copy dnsmasq plist
+  become: true
+  template: src=homebrew.mxcl.dnsmasq.plist dest=/Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+
+- name: Enable autostart dnsmasq
+  become: true
+  command: launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+  changed_when: false
+
+- name: Stop dnsmasq
+  become: true
+  command: launchctl stop homebrew.mxcl.dnsmasq
+  changed_when: false
+
+- name: Start dnsmasq
+  become: true
+  command: launchctl start homebrew.mxcl.dnsmasq
+  changed_when: false

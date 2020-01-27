@@ -1,0 +1,12 @@
+---
+- name: Create idea conf directory
+  file:
+    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.idea
+    state: directory
+    mode: 0777
+  become: false
+
+- name: Copy idea conf files
+  copy:
+    src: "files/idea/"
+    dest: "/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.idea/"

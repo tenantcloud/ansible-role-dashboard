@@ -1,0 +1,15 @@
+---
+- name: Start MySQL
+  command: /usr/local/bin/brew services start mysql@5.7
+  changed_when: false
+
+- name: Export MySQL path
+  command: echo 'export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"' >> ~/.zshrc
+  changed_when: false
+
+- name: Copy MySQL script
+  template: src=mysql.sh dest=/Users/{{ work_user }}/{{ work_dir }} mode=0777
+
+- name: Create databases and read-only user
+  command: sh /Users/{{ work_user }}/{{ work_dir }}/mysql.sh
+  changed_when: false

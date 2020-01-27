@@ -1,0 +1,18 @@
+---
+#- name: pre-commit copy
+#  copy:
+#    src: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/docs/installation/git-hooks/pre-commit'
+#    dest: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.git/hooks/pre-commit'
+#    remote_src: true
+#
+#- name: set chmod permission
+#  command: chmod +x /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.git/hooks/pre-commit
+#  become: true
+#  changed_when: false
+
+- name: copy pre-commit file and set permissions
+  copy:
+    src: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/docs/installation/git-hooks/pre-commit'
+    dest: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.git/hooks/pre-commit'
+    mode: a+x
+    remote_src: true

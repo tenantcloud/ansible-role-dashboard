@@ -1,0 +1,49 @@
+---
+- name: Copy docker enviromment file
+  copy:
+    src: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env.example
+    dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env
+    remote_src: true
+
+- name: Add SOCKET_DIR
+  lineinfile:
+    path: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env
+    regexp: '^SOCKET_DIR='
+    line: 'SOCKET_DIR=/Users/{{ work_user }}/{{ work_dir }}/{{ websockets_dir }}'
+
+- name: Prepare docker-compose file
+  file:
+    path: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/docker-compose.yml
+    state: absent
+
+- name: Copy docker-compose file for containers
+  template: src=docker-compose.yml dest=/Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/docker-compose.yml
+
+- name: Copy aws script
+  template: src=aws.sh dest=/Users/{{ work_user }}/{{ work_dir }} mode=0777
+
+- name: Run aws script
+  command: zsh /Users/{{ work_user }}/{{ work_dir }}/aws.sh
+  changed_when: false
+
+- name: source zshrc
+  become: false
+  command: /bin/zsh -c "source ~/.zshrc"
+  changed_when: false
+
+- name: Start services via docker-compose
+  docker_compose:
+    project_src: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}
+
+- name: Delete docker-compose file
+  file:
+    path: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/docker-compose.yml
+    state: absent
+
+- name: Pull from git
+  git:
+    repo: "{{ docker_git }}"
+    dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}
+    update: true
+    force: true
+    version: master

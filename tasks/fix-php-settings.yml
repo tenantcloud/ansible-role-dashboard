@@ -1,0 +1,41 @@
+---
+- name: Download minio certificate
+  get_url:
+    url: https://curl.haxx.se/ca/cacert.pem
+    dest: /usr/local/etc/nginx/ssl/cacert.pem
+
+- name: Add tenantcloud-root certificate to cacert.pem
+  shell: cat /usr/local/etc/nginx/ssl/tenantcloud-rootCA.crt >> /usr/local/etc/nginx/ssl/cacert.pem
+  changed_when: false
+
+- name: Change openssl.cafile string
+  lineinfile:
+    path: /usr/local/etc/php/7.1/php.ini
+    regexp: '^openssl.cafile ='
+    line: 'openssl.cafile = /usr/local/etc/nginx/ssl/cacert.pem'
+
+- name: Change openssl.capath string
+  lineinfile:
+    path: /usr/local/etc/php/7.1/php.ini
+    regexp: '^openssl.capath ='
+    line: ';openssl.capath ='
+
+- name: Linked php
+  command: /usr/local/bin/brew link --overwrite --force php@7.1
+  changed_when: false
+
+- name: Export PATH
+  command: echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.zshrc
+  changed_when: false
+
+- name: Export PATH
+  command: echo 'export PATH="/usr/local/opt/php@7.1/sbin:$PATH"' >> ~/.zshrc
+  changed_when: false
+
+- name: Copy ext-xdebug.ini
+  template: src=ext-xdebug.ini dest=/usr/local/etc/php/7.1/conf.d/ext-xdebug.ini
+
+- name: Delete opcache
+  file:
+    path: /usr/local/etc/php/7.1/conf.d/ext-opcache.ini
+    state: absent

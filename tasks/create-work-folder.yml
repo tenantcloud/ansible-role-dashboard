@@ -1,0 +1,42 @@
+---
+- name: Create work directory
+  file:
+    path: /Users/{{ work_user }}/{{ work_dir }}
+    state: directory
+    mode: 0777
+  become: false
+
+- name: Create nginx servers directory
+  file:
+    path: /usr/local/etc/nginx/servers
+    state: directory
+    mode: 0777
+  become: false
+
+- name: Create nginx ssl directory
+  file:
+    path: /usr/local/etc/nginx/ssl
+    state: directory
+    mode: 0777
+  become: false
+
+- name: Create minio crt directory
+  file:
+    path: /Users/{{ work_user }}/.minio
+    state: directory
+    mode: 0777
+  become: false
+
+- name: Create supervisor directory
+  file:
+    path: /usr/local/etc/supervisor.d
+    state: directory
+    mode: 0755
+  become: false
+
+- name: Create conf.d directory
+  file:
+    path: /usr/local/etc/php/7.1/conf.d
+    state: directory
+    mode: 0755
+  become: false
