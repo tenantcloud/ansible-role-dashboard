@@ -1,4 +1,16 @@
 ---
+- name: Create nginx servers directory
+  file:
+    path: /usr/local/etc/nginx/servers
+    state: directory
+    mode: 0777
+
+- name: Create nginx ssl directory
+  file:
+    path: /usr/local/etc/nginx/ssl
+    state: directory
+    mode: 0777
+
 - name: Copy nginx configured files
   template: src=home.{{ work_domain }}.conf dest=/usr/local/etc/nginx/servers/home.{{ work_domain }}.conf
 

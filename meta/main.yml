@@ -11,8 +11,8 @@ galaxy_info:
   platforms:
     - name: MacOS
       versions:
-        - "Catalina"
-        - "Mojave"
+        - "10.14"
+        - "10.15"
 
   galaxy_tags:
     - macos

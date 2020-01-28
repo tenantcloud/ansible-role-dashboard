@@ -41,12 +41,6 @@
     regexp: 'QUEUE_DRIVER='
     line: 'QUEUE_DRIVER=redis'
 
-- name: Add SOCKETIO_URL
-  lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
-    regexp: '^SOCKETIO_URL='
-    line: 'SOCKETIO_URL=https://home.{{ work_domain }}'
-
 - name: Add HOST
   lineinfile:
     path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
@@ -76,24 +70,6 @@
     path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
     regexp: '^DB_PASSWORD='
     line: 'DB_PASSWORD='
-
-- name: Add DB_ACTIVITY_LOG_HOST
-  lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
-    regexp: '^DB_ACTIVITY_LOG_HOST='
-    line: 'DB_ACTIVITY_LOG_HOST=127.0.0.1'
-
-- name: Add DB_ACTIVITY_LOG_PASSWORD
-  lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
-    regexp: '^DB_ACTIVITY_LOG_PASSWORD='
-    line: 'DB_ACTIVITY_LOG_PASSWORD='
-
-- name: Add DB_ACTIVITY_LOG_DATABASE
-  lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
-    regexp: '^DB_ACTIVITY_LOG_DATABASE='
-    line: 'DB_ACTIVITY_LOG_DATABASE={{ database }}_activity_log'
 
 - name: Add REDIS_HOST
   lineinfile:
@@ -197,6 +173,12 @@
     regexp: '^S3_AWS_URL='
     line: 'S3_AWS_URL=https://home.{{ work_domain }}:9002'
 
+- name: Add CDN_URL
+  lineinfile:
+    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    regexp: '^CDN_URL='
+    line: 'CDN_URL=https://home.{{ work_domain }}:9002/local'
+
 - name: Add SCOUT_ELASTIC_HOST
   lineinfile:
     path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
@@ -220,12 +202,6 @@
     path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
     regexp: '^CATEGORY_CREATE_ENABLED='
     line: 'CATEGORY_CREATE_ENABLED=true'
-
-- name: Add S3_MOBILE_REGION
-  lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
-    regexp: '^S3_MOBILE_REGION='
-    line: 'S3_MOBILE_REGION=us-east-1'
 
 - name: Add RENTRANGE_API_KEY
   lineinfile:

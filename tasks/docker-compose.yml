@@ -5,45 +5,65 @@
     dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env
     remote_src: true
 
-- name: Add SOCKET_DIR
-  lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env
-    regexp: '^SOCKET_DIR='
-    line: 'SOCKET_DIR=/Users/{{ work_user }}/{{ work_dir }}/{{ websockets_dir }}'
-
-- name: Prepare docker-compose file
+- name: Remove docker-credential-osxkeychain
   file:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/docker-compose.yml
+    path: /usr/local/bin/docker-credential-osxkeychain
     state: absent
 
-- name: Copy docker-compose file for containers
-  template: src=docker-compose.yml dest=/Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/docker-compose.yml
+- name: Create aws directory
+  file:
+    path: /Users/{{ work_user }}/.aws
+    state: directory
+    mode: 0777
 
-- name: Copy aws script
-  template: src=aws.sh dest=/Users/{{ work_user }}/{{ work_dir }} mode=0777
+- name: Create aws config file
+  file:
+    path: "/Users/{{ work_user }}/.aws/config"
+    state: touch
 
-- name: Run aws script
-  command: zsh /Users/{{ work_user }}/{{ work_dir }}/aws.sh
-  changed_when: false
+- name: Create aws credentials file
+  file:
+    path: "/Users/{{ work_user }}/.aws/credentials"
+    state: touch
 
-- name: source zshrc
-  become: false
-  command: /bin/zsh -c "source ~/.zshrc"
+- name: Add line in config file
+  lineinfile:
+    path: /Users/{{ work_user }}/.aws/config
+    line: "[default]"
+    create: true
+
+- name: Add line in config file
+  lineinfile:
+    dest: /Users/{{ work_user }}/.aws/config
+    line: region = {{ aws_default_region }}
+    insertafter: "[default]"
+
+- name: Add line in credentials file
+  lineinfile:
+    path: /Users/{{ work_user }}/.aws/credentials
+    line: "[default]"
+    create: true
+
+- name: Add line in credentials file
+  lineinfile:
+    dest: /Users/{{ work_user }}/.aws/credentials
+    line: aws_access_key_id = {{ aws_access_key_id }}
+    insertafter: "[default]"
+
+- name: Add line in credentials file
+  lineinfile:
+    dest: /Users/{{ work_user }}/.aws/credentials
+    line: aws_secret_access_key = {{ aws_secret_access_key }}
+    insertafter: "aws_access_key_id = {{ aws_access_key_id }}"
+
+- name: Docker login (must "--no-include-email")
+  shell: "$(aws ecr get-login --region {{ aws_default_region }} --no-include-email)"
+  args:
+    executable: /bin/zsh
+  environment:
+    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   changed_when: false
 
 - name: Start services via docker-compose
   docker_compose:
     project_src: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}
-
-- name: Delete docker-compose file
-  file:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/docker-compose.yml
-    state: absent
-
-- name: Pull from git
-  git:
-    repo: "{{ docker_git }}"
-    dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}
-    update: true
-    force: true
-    version: master
