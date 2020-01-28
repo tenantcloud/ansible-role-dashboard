@@ -1,0 +1,13 @@
+---
+- name: Сopy pre-commit script and set permissions
+  copy:
+    src: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/docs/installation/git-hooks/pre-commit'
+    dest: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.git/hooks/pre-commit'
+    mode: a+x
+    remote_src: true
+
+- name: Сopy protractor file
+  copy:
+    src: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.example.js'
+    dest: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.js'
+    remote_src: true

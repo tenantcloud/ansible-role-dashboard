@@ -12,4 +12,4 @@ cd /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}
 
 /Users/{{ work_user }}/.yarn/bin/yarn release
 
-cp tests/Protractor/protractorEnvironment.example.js tests/Protractor/protractorEnvironment.js
+/Users/{{ work_user }}/.yarn/bin/yarn symlink
