@@ -2,6 +2,7 @@
 # vars file for tenantcloud.ansible_role_dashboard
 
 work_user: "user"
+work_dir: "work"
 ansible_python_interpreter: "/usr/local/bin/python3"
 dashboard_git: ""
 dashboard_dir: ""

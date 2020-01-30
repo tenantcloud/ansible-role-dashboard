@@ -42,7 +42,7 @@
     src: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.example.js'
     dest: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.js'
     remote_src: true
-  when: file.stat.exists == true
+  when: file.stat.exists
 
 - name: Copy and setup TenantCloud dashboard environment file
   copy:

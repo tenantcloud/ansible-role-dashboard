@@ -47,7 +47,7 @@
     state: absent
 
 - name: Reinstall pkg-config
-  shell: brew reinstall pkg-config
+  command: brew reinstall pkg-config
   args:
     executable: /bin/zsh
   environment:
@@ -60,6 +60,7 @@
     executable: /usr/local/opt/php@7.1/bin/pecl
   environment:
     PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  changed_when: false
 
 - name: Install xdebug
   command: pecl install xdebug
@@ -67,9 +68,10 @@
     executable: /usr/local/opt/php@7.1/bin/pecl
   environment:
     PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  changed_when: false
 
 - name: Start service php
-  shell: brew services start php@7.1
+  command: brew services start php@7.1
   args:
     executable: /bin/zsh
   environment:
@@ -77,7 +79,7 @@
   changed_when: false
 
 - name: Start service redis
-  shell: brew services start redis
+  command: brew services start redis
   args:
     executable: /bin/zsh
   environment:
