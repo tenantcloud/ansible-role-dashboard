@@ -1,4 +1,49 @@
 ---
+- name: Create work directory
+  file:
+    path: /Users/{{ work_user }}/{{ work_dir }}
+    state: directory
+    mode: 0777
+
+- name: Create minio crt directory
+  file:
+    path: /Users/{{ work_user }}/.minio
+    state: directory
+    mode: 0777
+
+- name: Clone TenantCloud dashboard project
+  git:
+    repo: "{{ dashboard_git }}"
+    dest: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}
+    version: staging
+    force: true
+
+- name: Clone docker-containers project
+  git:
+    repo: "{{ docker_git }}"
+    dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}
+    version: master
+    force: true
+
+- name: Сopy pre-commit script and set permissions
+  copy:
+    src: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/docs/installation/git-hooks/pre-commit'
+    dest: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.git/hooks/pre-commit'
+    mode: a+x
+    remote_src: true
+
+- name: Get protractorEnvironment file exist status
+  stat:
+    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.example.js
+  register: file
+
+- name: Сopy protractor file
+  copy:
+    src: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.example.js'
+    dest: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.js'
+    remote_src: true
+  when: file.stat.exists == true
+
 - name: Copy and setup TenantCloud dashboard environment file
   copy:
     src: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env.pipeline
@@ -70,6 +115,18 @@
     path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
     regexp: '^DB_PASSWORD='
     line: 'DB_PASSWORD='
+
+- name: Add DB_ACTIVITY_LOG_DATABASE
+  lineinfile:
+    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    regexp: '^DB_ACTIVITY_LOG_DATABASE='
+    line: 'DB_ACTIVITY_LOG_DATABASE={{ database }}'
+
+- name: Add DB_ACTIVITY_LOG_PASSWORD
+  lineinfile:
+    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    regexp: '^DB_ACTIVITY_LOG_PASSWORD='
+    line: 'DB_ACTIVITY_LOG_PASSWORD='
 
 - name: Add REDIS_HOST
   lineinfile:
@@ -238,3 +295,14 @@
     path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
     regexp: '^CONVERTER_DRIVER='
     line: 'CONVERTER_DRIVER=lambda'
+
+- name: Create idea conf directory
+  file:
+    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.idea
+    state: directory
+    mode: 0777
+
+- name: Copy idea conf files
+  copy:
+    src: "files/idea/"
+    dest: "/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.idea/"

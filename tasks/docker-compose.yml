@@ -5,57 +5,6 @@
     dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env
     remote_src: true
 
-- name: Remove docker-credential-osxkeychain
-  file:
-    path: /usr/local/bin/docker-credential-osxkeychain
-    state: absent
-
-- name: Create aws directory
-  file:
-    path: /Users/{{ work_user }}/.aws
-    state: directory
-    mode: 0777
-
-- name: Create aws config file
-  file:
-    path: "/Users/{{ work_user }}/.aws/config"
-    state: touch
-
-- name: Create aws credentials file
-  file:
-    path: "/Users/{{ work_user }}/.aws/credentials"
-    state: touch
-
-- name: Add line in config file
-  lineinfile:
-    path: /Users/{{ work_user }}/.aws/config
-    line: "[default]"
-    create: true
-
-- name: Add line in config file
-  lineinfile:
-    dest: /Users/{{ work_user }}/.aws/config
-    line: region = {{ aws_default_region }}
-    insertafter: "[default]"
-
-- name: Add line in credentials file
-  lineinfile:
-    path: /Users/{{ work_user }}/.aws/credentials
-    line: "[default]"
-    create: true
-
-- name: Add line in credentials file
-  lineinfile:
-    dest: /Users/{{ work_user }}/.aws/credentials
-    line: aws_access_key_id = {{ aws_access_key_id }}
-    insertafter: "[default]"
-
-- name: Add line in credentials file
-  lineinfile:
-    dest: /Users/{{ work_user }}/.aws/credentials
-    line: aws_secret_access_key = {{ aws_secret_access_key }}
-    insertafter: "aws_access_key_id = {{ aws_access_key_id }}"
-
 - name: Docker login (must "--no-include-email")
   shell: "$(aws ecr get-login --region {{ aws_default_region }} --no-include-email)"
   args:

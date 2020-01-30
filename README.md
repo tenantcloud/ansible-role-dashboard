@@ -37,8 +37,6 @@ aws_lambda_key:
 aws_lambda_secret:
 aws_lambda_region:
 aws_lambda_s3:
-aws_access_key_id:
-aws_secret_access_key:
 aws_default_region:
 websockets_dir:
 websockets_image_aws:
@@ -78,8 +76,6 @@ Example Playbook
         aws_lambda_secret:
         aws_lambda_region:
         aws_lambda_s3:
-        aws_access_key_id:
-        aws_secret_access_key:
         aws_default_region:
         websockets_dir:
         websockets_image_aws:
