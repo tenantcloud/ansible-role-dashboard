@@ -38,8 +38,6 @@ aws_lambda_secret:
 aws_lambda_region:
 aws_lambda_s3:
 aws_default_region:
-websockets_dir:
-websockets_image_aws:
 
 Dependencies
 ------------
@@ -77,8 +75,6 @@ Example Playbook
         aws_lambda_region: ""
         aws_lambda_s3: ""
         aws_default_region: ""
-        websockets_dir: ""
-        websockets_image_aws: ""
       roles:
         - tenantcloud.ansible_role_dashboard
 
