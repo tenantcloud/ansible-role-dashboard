@@ -15,7 +15,7 @@
   git:
     repo: "{{ dashboard_git }}"
     dest: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}
-    version: staging
+    version: {{ dashboard_git_branch }}
     force: true
 
 - name: Clone docker-containers project
