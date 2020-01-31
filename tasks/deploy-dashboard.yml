@@ -1,0 +1,8 @@
+---
+- name: Run deploy dashboard script
+  command: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/sh/update.sh
+  args:
+    executable: /bin/zsh
+  environment:
+    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  changed_when: false

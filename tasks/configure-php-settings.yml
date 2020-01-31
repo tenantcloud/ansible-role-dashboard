@@ -1,0 +1,102 @@
+---
+- name: Download minio certificate
+  get_url:
+    url: https://curl.haxx.se/ca/cacert.pem
+    dest: /usr/local/etc/nginx/ssl/cacert.pem
+
+- name: Add tenantcloud-root certificate to cacert.pem
+  shell: cat /usr/local/etc/nginx/ssl/tenantcloud-rootCA.crt >> /usr/local/etc/nginx/ssl/cacert.pem
+  changed_when: false
+
+- name: Change openssl.cafile string
+  lineinfile:
+    path: /usr/local/etc/php/7.1/php.ini
+    regexp: '^openssl.cafile ='
+    line: 'openssl.cafile = /usr/local/etc/nginx/ssl/cacert.pem'
+
+- name: Change openssl.capath string
+  lineinfile:
+    path: /usr/local/etc/php/7.1/php.ini
+    regexp: '^openssl.capath ='
+    line: ';openssl.capath ='
+
+- name: Linked php
+  command: /usr/local/bin/brew link --overwrite --force php@7.1
+  changed_when: false
+
+- name: Export PATH
+  command: echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.zshrc
+  changed_when: false
+
+- name: Export PATH
+  command: echo 'export PATH="/usr/local/opt/php@7.1/sbin:$PATH"' >> ~/.zshrc
+  changed_when: false
+
+- name: Create conf.d directory
+  file:
+    path: /usr/local/etc/php/7.1/conf.d
+    state: directory
+    mode: 0755
+
+- name: Copy ext-xdebug.ini
+  template: src=ext-xdebug.ini dest=/usr/local/etc/php/7.1/conf.d/ext-xdebug.ini
+
+- name: Delete opcache
+  file:
+    path: /usr/local/etc/php/7.1/conf.d/ext-opcache.ini
+    state: absent
+
+- name: Reinstall pkg-config
+  command: brew reinstall pkg-config
+  args:
+    executable: /bin/zsh
+  environment:
+    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  changed_when: false
+
+- name: Install imagick
+  command: pecl install imagick
+  args:
+    executable: /usr/local/opt/php@7.1/bin/pecl
+  environment:
+    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  changed_when: false
+
+- name: Install xdebug
+  command: pecl install xdebug
+  args:
+    executable: /usr/local/opt/php@7.1/bin/pecl
+  environment:
+    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  changed_when: false
+
+- name: Start service php
+  command: brew services start php@7.1
+  args:
+    executable: /bin/zsh
+  environment:
+    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  changed_when: false
+
+- name: Start service redis
+  command: brew services start redis
+  args:
+    executable: /bin/zsh
+  environment:
+    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  changed_when: false
+
+- name: Install composer
+  shell: |
+    set -o pipefail
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+  args:
+    creates: /usr/local/bin/composer
+    warn: false
+  changed_when: false
+
+- name: Run composer install hirak/prestissimo globally
+  composer:
+    command: require
+    global_command: true
+    arguments: hirak/prestissimo

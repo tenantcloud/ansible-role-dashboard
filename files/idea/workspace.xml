@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4b1411f5-3b7f-4398-9a37-e59b8254c2cd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gulp-files-min.json" beforeDir="false" afterPath="$PROJECT_DIR$/gulp-files-min.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/admin-app-d53c5be631.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/admin-vendor-d6145158c6.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/auth-3e2c5110ff.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/auth-app-a54612828b.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/auth-vendor-a8ef295f1c.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/ba-app-d8c090ecd9.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/ba-vendor-d6145158c6.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/developer-app-d8c090ecd9.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/developer-vendor-d41d8cd98f.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/developer-vendor-d41d8cd98f.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/devops-app-4bb98e8c2e.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/devops-vendor-d41d8cd98f.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/devops-vendor-d41d8cd98f.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/landlord-655bb3f0c3.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/landlord-app-8bcfea4e23.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/landlord-vendor-04f2b646c6.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/loadingPage-app-9a83951fdc.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/loadingPage-vendor-83edcbe1eb.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/marketing-app-d8c090ecd9.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/marketing-vendor-d6145158c6.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/owner-8019e0673c.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/owner-app-50bfb4dbd2.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/owner-vendor-d41d8cd98f.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/owner-vendor-d41d8cd98f.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/professional-86b8335ff5.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/professional-app-b396b1dfb6.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/professional-vendor-d41d8cd98f.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/professional-vendor-d41d8cd98f.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/public-app-662b0afce0.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/public-style-1-8c90bfea19.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/public-style-2-99bd9c714c.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/public-style-3-d905572698.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/public-style-4-4b13441823.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/public-style-5-b9d1ed6cd5.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/public-style-6-e990a7fd4b.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/public-style-7-08bc0d1912.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/public-vendor-b563f2c1b4.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/qa-app-7aed31bb3c.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/qa-vendor-d6145158c6.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/sharedAdministration-6a4dc749f6.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/sharedAdministration-app-5b881e059f.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/sharedUser-app-8bb48429bc.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/support-app-d8c090ecd9.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/support-vendor-d6145158c6.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/tenant-95ce1bdc1b.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/tenant-app-242fca91a5.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/tenant-vendor-671b1ed492.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/auth-app.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/auth-app.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/auth-vendor.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/auth-vendor.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/auth.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/auth.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/landlord-app.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/landlord-app.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/landlord-vendor.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/landlord-vendor.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/landlord.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/landlord.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/owner-app.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/owner-app.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/owner-vendor.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/owner-vendor.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/owner.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/owner.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/professional-app.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/professional-app.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/professional-vendor.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/professional-vendor.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/professional.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/professional.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/sharedUser-app.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/sharedUser-app.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/tenant-app.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/tenant-app.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/tenant-vendor.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/tenant-vendor.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/build/tenant.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/build/tenant.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/chcp.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/chcp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/chcp.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/chcp.manifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mobile/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/style/old.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/old.css" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpDebugGeneral" xdebug_debug_port="10002" />
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/tenantcloud/laravel-cors" />
+      <path value="$PROJECT_DIR$/vendor/tenantcloud/emailer" />
+      <path value="$PROJECT_DIR$/vendor/danielstjules/stringy" />
+      <path value="$PROJECT_DIR$/vendor/tenantcloud/omnipay-dwolla" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/laravelium/sitemap" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/vendor/brianium/habitat" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/elasticsearch/elasticsearch" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/vendor/webpatser/laravel-uuid" />
+      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/php-diff" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/quickbooks/v3-php-sdk" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/vendor/delatbabel/elocryptfive" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/vendor/webkid/js-translator" />
+      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/clue/stream-filter" />
+      <path value="$PROJECT_DIR$/vendor/bugsnag/bugsnag-laravel" />
+      <path value="$PROJECT_DIR$/vendor/bugsnag/bugsnag-psr-logger" />
+      <path value="$PROJECT_DIR$/vendor/bugsnag/bugsnag" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-snappy" />
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/brozot/laravel-fcm" />
+      <path value="$PROJECT_DIR$/vendor/fideloper/proxy" />
+      <path value="$PROJECT_DIR$/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/vendor/itsgoingd/clockwork" />
+      <path value="$PROJECT_DIR$/vendor/laravel/horizon" />
+      <path value="$PROJECT_DIR$/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/vendor/laravel/scout" />
+      <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/vendor/laravel/helpers" />
+      <path value="$PROJECT_DIR$/vendor/laravel/slack-notification-channel" />
+      <path value="$PROJECT_DIR$/vendor/laravel/socialite" />
+      <path value="$PROJECT_DIR$/vendor/laravel/cashier" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-escaper" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-stdlib" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-validator" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/opis/closure" />
+      <path value="$PROJECT_DIR$/vendor/cakephp/chronos" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/geocoder" />
+      <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/igorw/get-in" />
+      <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />
+      <path value="$PROJECT_DIR$/vendor/jeremykendall/php-domain-parser" />
+      <path value="$PROJECT_DIR$/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/vendor/chumper/zipper" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/phpspec" />
+      <path value="$PROJECT_DIR$/vendor/nexmo/laravel" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/nexmo/client" />
+      <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/vendor/brianium/paratest" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/friendsofphp/php-cs-fixer" />
+      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor/moneyphp/money" />
+      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/profits4purpose/wkhtmltopdf-binaries" />
+      <path value="$PROJECT_DIR$/vendor/egeloen/http-adapter" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/pusher/pusher-php-server" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/streams" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/ringphp" />
+      <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/vendor/php-http/message" />
+      <path value="$PROJECT_DIR$/vendor/php-http/guzzle6-adapter" />
+      <path value="$PROJECT_DIR$/vendor/php-http/discovery" />
+      <path value="$PROJECT_DIR$/vendor/laracasts/generators" />
+      <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/vendor/php-http/message-factory" />
+      <path value="$PROJECT_DIR$/vendor/ukiedev/laravel-filemanager" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpword" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpexcel" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/common" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/vendor/dwolla/dwollaswagger" />
+      <path value="$PROJECT_DIR$/vendor/dwolla/dwolla-php" />
+      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/spatie/fractalistic" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-fractal" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-glide" />
+      <path value="$PROJECT_DIR$/vendor/arturgrigio/google-laravel-calendar-2" />
+      <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-highlighter" />
+      <path value="$PROJECT_DIR$/vendor/babenkoivan/scout-elasticsearch-driver" />
+      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-color" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/vendor/artesaos/seotools" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/kylekatarnls/update-helper" />
+      <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/christian-riesen/base32" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/google2fa" />
+      <path value="$PROJECT_DIR$/vendor/ellisthedev/laravel-5-robots" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/vendor/php-cs-fixer/diff" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-snappy" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/imagine/imagine" />
+      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/pclzip/pclzip" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/predis/predis" />
+      <path value="$PROJECT_DIR$/vendor/zencoder/zencoder-php" />
+      <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/vendor/league/glide" />
+      <path value="$PROJECT_DIR$/vendor/orchestra/contracts" />
+      <path value="$PROJECT_DIR$/vendor/league/uri" />
+      <path value="$PROJECT_DIR$/vendor/orchestra/imagine" />
+      <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
+      <path value="$PROJECT_DIR$/vendor/league/flysystem-aws-s3-v3" />
+      <path value="$PROJECT_DIR$/vendor/league/fractal" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/vendor/orchestra/support-core" />
+      <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/vendor/orchestra/support-providers" />
+      <path value="$PROJECT_DIR$/vendor/google/apiclient" />
+      <path value="$PROJECT_DIR$/vendor/google/auth" />
+      <path value="$PROJECT_DIR$/vendor/google/apiclient-services" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/common" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/stripe" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/paypal" />
+      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/vendor/jeremeamia/superclosure" />
+      <path value="$PROJECT_DIR$/vendor/tenantcloud/counter" />
+      <path value="$PROJECT_DIR$/vendor/tenantcloud/command-logger" />
+      <path value="$PROJECT_DIR$/vendor/tenantcloud/excel" />
+    </include_path>
+  </component>
+  <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="127.0.0.1" port="10002" />
+  <component name="ProjectId" id="1SspB3qFD32PgG0H2Ts4Dd3COdu" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="js.linters.configure.manually.selectedeslint" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.php.debug.xdebug.proxy" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4b1411f5-3b7f-4398-9a37-e59b8254c2cd" name="Default Changelist" comment="" />
+      <created>1572362018592</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572362018592</updated>
+      <workItem from="1572362019707" duration="53000" />
+      <workItem from="1572518846865" duration="551000" />
+      <workItem from="1572519414016" duration="407000" />
+      <workItem from="1572522240362" duration="692000" />
+      <workItem from="1572525001667" duration="2539000" />
+      <workItem from="1572536144469" duration="287000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/public/node_modules/karma/config.tpl.js" />
+        <option value="$PROJECT_DIR$/public/node_modules/aws-sdk/scripts/services-table-generator.js" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,8 @@
+---
+- include: configure-dashboard.yml
+- include: configure-nginx-settings.yml
+- include: configure-php-settings.yml
+- include: configure-mysql-settings.yml
+- include: docker-compose.yml
+- include: configure-dnsmasq.yml
+- include: deploy-dashboard.yml
