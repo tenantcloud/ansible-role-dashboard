@@ -18,9 +18,10 @@ Role Variables
 work_user: "user"
 work_dir: "work"
 dashboard_git:
+dashboard_git_branch:
 dashboard_dir:
-docker_git:
 docker_dir:
+docker_git:
 work_domain:
 database:
 pusher_app_id:
@@ -54,27 +55,28 @@ Example Playbook
       vars:
         work_user: "user"
         work_dir: "work"
-        dashboard_git: ""
-        dashboard_dir: ""
-        docker_dir: ""
-        docker_git: ""
-        work_domain: ""
-        database: ""
-        pusher_app_id: ""
-        pusher_app_key: ""
-        pusher_app_secret: ""
-        app_key: ""
-        mysql_user: ""
-        minio_key: ""
-        minio_secret: ""
-        zencoder_key: ""
-        webhook_token: ""
-        rentrange_key: ""
-        aws_lambda_key: ""
-        aws_lambda_secret: ""
-        aws_lambda_region: ""
-        aws_lambda_s3: ""
-        aws_default_region: ""
+        dashboard_git:
+        dashboard_git_branch:
+        dashboard_dir:
+        docker_dir:
+        docker_git:
+        work_domain:
+        database:
+        pusher_app_id:
+        pusher_app_key:
+        pusher_app_secret:
+        app_key:
+        mysql_user:
+        minio_key:
+        minio_secret:
+        zencoder_key:
+        webhook_token:
+        rentrange_key:
+        aws_lambda_key:
+        aws_lambda_secret:
+        aws_lambda_region:
+        aws_lambda_s3:
+        aws_default_region:
       roles:
         - tenantcloud.ansible_role_dashboard
 
