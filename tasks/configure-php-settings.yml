@@ -54,6 +54,11 @@
     PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   changed_when: false
 
+- name: Get imagick module exist status
+  stat:
+    path: /usr/local/lib/php/pecl/20160303/imagick.so
+  register: imagick
+
 - name: Install imagick
   command: pecl install imagick
   args:
@@ -61,6 +66,12 @@
   environment:
     PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   changed_when: false
+  when: not imagick.stat.exists
+
+- name: Get imagick module exist xdebug
+  stat:
+    path: /usr/local/lib/php/pecl/20160303/xdebug.so
+  register: xdebug
 
 - name: Install xdebug
   command: pecl install xdebug
@@ -69,6 +80,7 @@
   environment:
     PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   changed_when: false
+  when: not imagick.stat.exists
 
 - name: Start service php
   command: brew services start php@7.1
