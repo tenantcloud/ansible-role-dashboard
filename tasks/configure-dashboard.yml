@@ -52,11 +52,11 @@
   become: false
 
 - name: Copy supervisor config
-  template: src=supervisord.ini dest=/usr/local/etc/supervisord.ini
+  template: src=supervisord.j2 dest=/usr/local/etc/supervisord.ini
   changed_when: false
 
 - name: Copy horizon config
-  template: src=horizon.ini dest=/usr/local/etc/supervisor.d/horizon.ini
+  template: src=horizon.j2 dest=/usr/local/etc/supervisor.d/horizon.ini
   changed_when: false
 
 - name: Start supervisor

@@ -99,8 +99,8 @@ server {
 	  expires -1;
 	}
 
-    access_log /usr/local/var/log/nginx/home.tenantcloud.access.log;
-    error_log  /usr/local/var/log/nginx/home.tenantcloud.error.log;
+    access_log /usr/local/var/log/nginx/home.{{ work_domain }}.access.log;
+    error_log  /usr/local/var/log/nginx/home.{{ work_domain }}.error.log;
 
     client_max_body_size 512m;
 }

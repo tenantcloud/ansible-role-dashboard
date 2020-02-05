@@ -9,10 +9,10 @@ galaxy_info:
   min_ansible_version: 2.4
 
   platforms:
-    - name: MacOS
+    - name: MacOSX
       versions:
-        - "10.14"
-        - "10.15"
+        - 10.14
+        - 10.15
 
   galaxy_tags:
     - macos

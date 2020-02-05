@@ -5,6 +5,11 @@
     dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env
     remote_src: true
 
+- name: Remove docker-credential-osxkeychain
+  file:
+    path: /usr/local/bin/docker-credential-osxkeychain
+    state: absent
+
 - name: Docker login (must "--no-include-email")
   shell: "$(aws ecr get-login --region {{ aws_default_region }} --no-include-email)"
   args:

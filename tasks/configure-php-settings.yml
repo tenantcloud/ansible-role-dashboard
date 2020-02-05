@@ -38,8 +38,8 @@
     state: directory
     mode: 0755
 
-- name: Copy ext-xdebug.ini
-  template: src=ext-xdebug.ini dest=/usr/local/etc/php/7.1/conf.d/ext-xdebug.ini
+- name: Copy ext-xdebug.j2
+  template: src=ext-xdebug.j2 dest=/usr/local/etc/php/7.1/conf.d/ext-xdebug.ini
 
 - name: Delete opcache
   file:
@@ -48,15 +48,13 @@
 
 - name: Reinstall pkg-config
   command: brew reinstall pkg-config
-  args:
-    executable: /bin/zsh
   environment:
     PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   changed_when: false
 
 - name: Get imagick module exist status
   stat:
-    path: /usr/local/lib/php/pecl/20160303/imagick.so
+    path: /usr/local/lib/php/pecl/{{ php_api_version }}/imagick.so
   register: imagick
 
 - name: Install imagick
@@ -70,7 +68,7 @@
 
 - name: Get imagick module exist xdebug
   stat:
-    path: /usr/local/lib/php/pecl/20160303/xdebug.so
+    path: /usr/local/lib/php/pecl/{{ php_api_version }}/xdebug.so
   register: xdebug
 
 - name: Install xdebug
