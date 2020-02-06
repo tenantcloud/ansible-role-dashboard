@@ -12,10 +12,8 @@
 
 - name: Docker login (must "--no-include-email")
   shell: "$(aws ecr get-login --region {{ aws_default_region }} --no-include-email)"
-  args:
-    executable: /bin/zsh
   environment:
-    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
 
 - name: Start services via docker-compose

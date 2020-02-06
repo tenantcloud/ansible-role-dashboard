@@ -21,15 +21,15 @@
     line: ';openssl.capath ='
 
 - name: Linked php
-  command: /usr/local/bin/brew link --overwrite --force php@7.1
+  command: /usr/local/bin/brew link --overwrite --force {{ php_version }}
   changed_when: false
 
 - name: Export PATH
-  command: echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.zshrc
+  command: echo 'export PATH="/usr/local/opt/{{ php_version }}/bin:$PATH"' >> ~/.zshrc
   changed_when: false
 
 - name: Export PATH
-  command: echo 'export PATH="/usr/local/opt/php@7.1/sbin:$PATH"' >> ~/.zshrc
+  command: echo 'export PATH="/usr/local/opt/{{ php_version }}/sbin:$PATH"' >> ~/.zshrc
   changed_when: false
 
 - name: Create conf.d directory
@@ -49,7 +49,7 @@
 - name: Reinstall pkg-config
   command: brew reinstall pkg-config
   environment:
-    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
 
 - name: Get imagick module exist status
@@ -60,9 +60,9 @@
 - name: Install imagick
   command: pecl install imagick
   args:
-    executable: /usr/local/opt/php@7.1/bin/pecl
+    executable: /usr/local/opt/{{ php_version }}/bin/pecl
   environment:
-    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
   when: not imagick.stat.exists
 
@@ -74,18 +74,18 @@
 - name: Install xdebug
   command: pecl install xdebug
   args:
-    executable: /usr/local/opt/php@7.1/bin/pecl
+    executable: /usr/local/opt/{{ php_version }}/bin/pecl
   environment:
-    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
   when: not imagick.stat.exists
 
 - name: Start service php
-  command: brew services start php@7.1
+  command: brew services start {{ php_version }}
   args:
     executable: /bin/zsh
   environment:
-    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
 
 - name: Start service redis
@@ -93,7 +93,7 @@
   args:
     executable: /bin/zsh
   environment:
-    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
 
 - name: Install composer

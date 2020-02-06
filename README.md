@@ -40,7 +40,7 @@ aws_lambda_region:
 aws_lambda_s3:
 aws_default_region:
 php_api_version:
-nvm_node_version:
+php_version:
 
 Dependencies
 ------------
@@ -80,7 +80,7 @@ Example Playbook
         aws_lambda_s3:
         aws_default_region:
         php_api_version:
-        nvm_node_version:
+        php_version:
       roles:
         - tenantcloud.ansible_role_dashboard
 
