@@ -38,8 +38,8 @@
     state: directory
     mode: 0755
 
-- name: Copy ext-xdebug.j2
-  template: src=ext-xdebug.j2 dest=/usr/local/etc/php/7.1/conf.d/ext-xdebug.ini
+- name: Copy ext-xdebug.ini
+  template: src=ext-xdebug.ini.j2 dest=/usr/local/etc/php/7.1/conf.d/ext-xdebug.ini
 
 - name: Delete opcache
   file:

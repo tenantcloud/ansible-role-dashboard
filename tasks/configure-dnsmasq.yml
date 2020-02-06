@@ -16,7 +16,7 @@
 
 - name: Copy dnsmasq plist
   become: true
-  template: src=homebrew.mxcl.dnsmasq.j2 dest=/Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+  template: src=homebrew.mxcl.dnsmasq.plist.j2 dest=/Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 
 - name: Enable autostart dnsmasq
   become: true
