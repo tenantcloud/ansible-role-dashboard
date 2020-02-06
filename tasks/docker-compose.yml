@@ -5,6 +5,12 @@
     dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env
     remote_src: true
 
+- name: Change docker settings
+  lineinfile:
+    path: /Users/{{ work_user }}/.docker/config.json
+    regexp: '  "credsStore'
+    state: absent
+
 - name: Remove docker-credential-osxkeychain
   file:
     path: /usr/local/bin/docker-credential-osxkeychain
