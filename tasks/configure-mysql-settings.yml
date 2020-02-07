@@ -8,7 +8,7 @@
   changed_when: false
 
 - name: Copy MySQL script
-  template: src=mysql.sh dest=/Users/{{ work_user }}/{{ work_dir }} mode=0777
+  template: src=mysql.sh.j2 dest=/Users/{{ work_user }}/{{ work_dir }}/mysql.sh mode=0777
 
 - name: Create databases and read-only user
   command: sh /Users/{{ work_user }}/{{ work_dir }}/mysql.sh

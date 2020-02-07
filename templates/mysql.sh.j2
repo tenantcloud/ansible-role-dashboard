@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sleep 7
 /usr/local/opt/mysql\@5.7/bin/mysql -uroot <<MYSQL_SCRIPT
 CREATE DATABASE IF NOT EXISTS {{ database }};
 CREATE USER IF NOT EXISTS 'read'@'%' IDENTIFIED BY 'read';
