@@ -15,9 +15,14 @@ which can be found on the following path - /Users/{{ work_user }}/{{ work_dir }}
 
  If you want to run basic tests, run the following from the project folder:
 
- - npm run test //carma-test
- - vendor/bin/phpunit //php-unit-test
- - protractor protractor.conf.js --crawler //e2e-test
+     - Run frontend test (carma):
+       npm run test
 
-    * Before run e2e test you must run webdriver:
-        - webdriver-manager clean && node_modules/webdriver-manager/bin/webdriver-manager update --versions.chrome=71.0.3578.80 && node_modules/webdriver-manager/bin/webdriver-manager start --versions.chrome=71.0.3578.80
+     - Run backend test (phpunit):
+       vendor/bin/phpunit
+
+     - Run users test (crawler):
+       protractor protractor.conf.js --crawler
+
+     * Before run e2e test you must run webdriver:
+         - webdriver-manager clean && node_modules/webdriver-manager/bin/webdriver-manager update --versions.chrome=71.0.3578.80 && node_modules/webdriver-manager/bin/webdriver-manager start --versions.chrome=71.0.3578.80
