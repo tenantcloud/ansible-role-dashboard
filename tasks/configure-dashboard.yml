@@ -11,6 +11,12 @@
     state: directory
     mode: 0777
 
+- name: Create mysql db directory
+  file:
+    path: /Users/{{ work_user }}/{{ work_dir }}/mysql
+    state: directory
+    mode: 0777
+
 - name: Clone TenantCloud dashboard project
   git:
     repo: "{{ dashboard_git }}"
@@ -22,7 +28,7 @@
   git:
     repo: "{{ docker_git }}"
     dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}
-    version: master
+    version: "{{ docker_git_branch }}"
     force: true
 
 - name: Сopy pre-commit script and set permissions

@@ -88,14 +88,6 @@
     PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
 
-- name: Start service redis
-  command: brew services start redis
-  args:
-    executable: /bin/zsh
-  environment:
-    PATH: "{{ lookup('env','PATH') }}"
-  changed_when: false
-
 - name: Install composer
   shell: |
     set -o pipefail
