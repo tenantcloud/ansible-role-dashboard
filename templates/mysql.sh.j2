@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 10
+sleep 25
 mysql -uroot <<MYSQL_SCRIPT
 CREATE DATABASE IF NOT EXISTS {{ database }};
 CREATE USER IF NOT EXISTS 'read'@'%' IDENTIFIED BY 'read';
