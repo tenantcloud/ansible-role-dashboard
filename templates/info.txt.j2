@@ -10,6 +10,15 @@ Congratulations, you have successfully installed {{ dashboard_dir }} project.
   URL Mailcatcher site  - http://127.0.0.1:1080
   URL Supervisor site   - http://127.0.0.1:9001
 
+ In order to log in to the following services via the web, such logins and passwords are required:
+
+ Minio site  -> {{ minio_key }} - {{ minio_secret }}
+ Socket site -> admin@{{ work_domain }} - Qwerty123
+
+ Mysql server and database are used in the docker container, to connect to mysql server we use the command:
+
+ mysql -u{{ mysql_user }} -h127.0.0.1
+
  If you want to pull the latest changes, switch to the necessary branch and run the script,
 which can be found on the following path - /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/sh/update.sh
 
@@ -21,8 +30,11 @@ which can be found on the following path - /Users/{{ work_user }}/{{ work_dir }}
      - Run backend test (phpunit):
        vendor/bin/phpunit
 
-     - Run users test (crawler):
-       protractor protractor.conf.js --crawler
+     * Before run e2e users test you must run webdriver:
 
-     * Before run e2e test you must run webdriver:
-         - webdriver-manager clean && node_modules/webdriver-manager/bin/webdriver-manager update --versions.chrome=71.0.3578.80 && node_modules/webdriver-manager/bin/webdriver-manager start --versions.chrome=71.0.3578.80
+     - webdriver-manager clean && node_modules/webdriver-manager/bin/webdriver-manager \
+       update --versions.chrome=71.0.3578.80 && node_modules/webdriver-manager/bin/webdriver-manager \
+       start --versions.chrome=71.0.3578.80
+
+     - Run e2e users test (crawler):
+       protractor protractor.conf.js --crawler
