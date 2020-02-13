@@ -2,8 +2,15 @@
 - name: Copy MySQL script
   template: src=mysql.sh.j2 dest=/Users/{{ work_user }}/{{ work_dir }}/mysql/mysql.sh mode=0777
 
+- name: Check if port 3306 is listening
+  wait_for:
+    host: 127.0.0.1
+    port: 3306
+    delay: 3
+    state: started
+
 - name: Create databases and read-only user
-  command: docker exec --tty tc-containers_mysql_1 /bin/bash /var/lib/mysql/mysql.sh
+  command: /Users/{{ work_user }}/{{ work_dir }}/mysql/mysql.sh
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
