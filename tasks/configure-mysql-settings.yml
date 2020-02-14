@@ -6,7 +6,7 @@
   wait_for:
     host: 127.0.0.1
     port: 3306
-    delay: 3
+    delay: 5
     state: started
 
 - name: Create databases and read-only user
