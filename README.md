@@ -34,7 +34,6 @@ minio_secret:
 zencoder_key:
 webhook_token:
 rentrange_key:
-aws_account_id:
 aws_lambda_key:
 aws_lambda_secret:
 aws_lambda_region:
@@ -75,7 +74,6 @@ Example Playbook
         zencoder_key:
         webhook_token:
         rentrange_key:
-        aws_account_id:
         aws_lambda_key:
         aws_lambda_secret:
         aws_lambda_region:
