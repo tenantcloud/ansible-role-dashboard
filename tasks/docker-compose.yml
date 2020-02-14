@@ -17,8 +17,7 @@
     state: absent
 
 - name: Docker login (must "--no-include-email")
-  shell: "$(aws ecr get-login-password | docker login --username AWS \
-  --password-stdin {{ aws_account_id }})"
+  shell: "$(aws ecr get-login --region {{ aws_default_region }} --no-include-email)"
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
