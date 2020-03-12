@@ -1,7 +1,7 @@
 ---
 - name: Create work directory
   file:
-    path: /Users/{{ work_user }}/home.{{ work_domain }}
+    path: /Users/{{ work_user }}/{{ work_dir }}
     state: directory
     mode: 0777
 
