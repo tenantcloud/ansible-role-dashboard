@@ -2,7 +2,7 @@ server {
     listen 80;
     listen 443 ssl http2;
     server_name *.{{ work_domain }};
-    root /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/public;
+    root /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/public;
     index index.html index.htm index.php;
 
     # redirect from http to https

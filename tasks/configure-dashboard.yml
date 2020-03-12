@@ -1,7 +1,7 @@
 ---
 - name: Create work directory
   file:
-    path: /Users/{{ work_user }}/{{ work_dir }}
+    path: /Users/{{ work_user }}/home.{{ work_domain }}
     state: directory
     mode: 0777
 
@@ -20,7 +20,7 @@
 - name: Clone TenantCloud dashboard project
   git:
     repo: "{{ dashboard_git }}"
-    dest: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}
+    dest: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}
     version: "{{ dashboard_git_branch }}"
     force: true
 
@@ -33,20 +33,20 @@
 
 - name: Сopy pre-commit script and set permissions
   copy:
-    src: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/docs/installation/git-hooks/pre-commit'
-    dest: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.git/hooks/pre-commit'
+    src: '/Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/docs/installation/git-hooks/pre-commit'
+    dest: '/Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.git/hooks/pre-commit'
     mode: a+x
     remote_src: true
 
 - name: Get protractorEnvironment file exist status
   stat:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.example.js
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/tests/Protractor/protractorEnvironment.example.js
   register: file
 
 - name: Сopy protractor file
   copy:
-    src: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.example.js'
-    dest: '/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/tests/Protractor/protractorEnvironment.js'
+    src: '/Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/tests/Protractor/protractorEnvironment.example.js'
+    dest: '/Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/tests/Protractor/protractorEnvironment.js'
     remote_src: true
   when: file.stat.exists
 
@@ -71,263 +71,263 @@
 
 - name: Copy and setup TenantCloud dashboard environment file
   copy:
-    src: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env.pipeline
-    dest: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    src: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env.pipeline
+    dest: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     remote_src: true
 
 - name: Change APP_VERSION
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^APP_VERSION='
     line: 'APP_VERSION=local'
 
 - name: Change APP_ENV
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^APP_ENV='
-    line: 'APP_ENV=local'
+    line: 'APP_ENV={{ app_env }}'
 
 - name: Add APP_KEY
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^APP_KEY='
     line: 'APP_KEY={{ app_key }}'
 
 - name: Change CACHE_DRIVER
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^CACHE_DRIVER='
     line: 'CACHE_DRIVER=redis'
 
 - name: Change SESSION_DRIVER
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: 'SESSION_DRIVER='
     line: 'SESSION_DRIVER=redis'
 
 - name: Change QUEUE_DRIVER
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: 'QUEUE_DRIVER='
     line: 'QUEUE_DRIVER=redis'
 
 - name: Add HOST
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^HOST='
     line: 'HOST={{ work_domain }}'
 
 - name: Add DB_HOST
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_HOST='
     line: 'DB_HOST=127.0.0.1'
 
 - name: Add DB_DATABASE
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_DATABASE='
     line: 'DB_DATABASE={{ database }}'
 
 - name: Add DB_USERNAME
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_USERNAME='
     line: 'DB_USERNAME={{ mysql_user }}'
 
 - name: Add DB_PASSWORD
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_PASSWORD='
     line: 'DB_PASSWORD='
 
 - name: Add DB_ACTIVITY_LOG_DATABASE
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_ACTIVITY_LOG_DATABASE='
     line: 'DB_ACTIVITY_LOG_DATABASE={{ database }}'
 
 - name: Add DB_ACTIVITY_LOG_PASSWORD
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_ACTIVITY_LOG_PASSWORD='
     line: 'DB_ACTIVITY_LOG_PASSWORD='
 
 - name: Add REDIS_HOST
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^REDIS_HOST='
     line: 'REDIS_HOST=127.0.0.1'
 
 - name: Add BROADCAST_DRIVER
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^BROADCAST_DRIVER='
     line: 'BROADCAST_DRIVER=pusher'
 
 - name: Add PUSHER_APP_ID
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_ID='
     line: 'PUSHER_APP_ID={{ pusher_app_id }}'
 
 - name: Add PUSHER_APP_KEY
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_KEY='
     line: 'PUSHER_APP_KEY={{ pusher_app_key }}'
 
 - name: Add PUSHER_APP_SECRET
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_SECRET='
     line: 'PUSHER_APP_SECRET={{ pusher_app_secret }}'
 
 - name: Add PUSHER_APP_URL
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_URL='
     line: 'PUSHER_APP_URL=socket.{{ work_domain }}:9090'
 
 - name: Add PUSHER_APP_PORT
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_PORT='
     line: 'PUSHER_APP_PORT=6060'
 
 - name: Add MAIL_DRIVER
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_DRIVER='
     line: 'MAIL_DRIVER=smtp'
 
 - name: Add MAIL_HOST
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_HOST='
     line: 'MAIL_HOST=127.0.0.1'
 
 - name: Add MAIL_USERNAME
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_USERNAME='
     line: '#MAIL_USERNAME=null'
 
 - name: Add MAIL_PASSWORD
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_PASSWORD='
     line: '#MAIL_PASSWORD=null'
 
 - name: Change MAIL_ENCRYPTION
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_ENCRYPTION='
     line: 'MAIL_ENCRYPTION='
 
 - name: Add DEFAULT_FILE_STORAGE
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DEFAULT_FILE_STORAGE=s3'
     line: '#DEFAULT_FILE_STORAGE=s3'
 
 - name: Add S3_KEY
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^S3_KEY='
     line: 'S3_KEY={{ minio_key }}'
 
 - name: Add S3_SECRET_KEY
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^S3_SECRET_KEY='
     line: 'S3_SECRET_KEY={{ minio_secret }}'
 
 - name: Add S3_BUCKET
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^S3_BUCKET='
     line: 'S3_BUCKET=local'
 
 - name: Add S3_AWS_URL
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^S3_AWS_URL='
     line: 'S3_AWS_URL=https://home.{{ work_domain }}:9002'
 
 - name: Add CDN_URL
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^CDN_URL='
     line: 'CDN_URL=https://home.{{ work_domain }}:9002/local'
 
 - name: Add SCOUT_ELASTIC_HOST
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^SCOUT_ELASTIC_HOST='
     line: 'SCOUT_ELASTIC_HOST=127.0.0.1:9200'
 
 - name: Add ZENCODER_API_KEY
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^ZENCODER_API_KEY='
     line: 'ZENCODER_API_KEY={{ zencoder_key }}'
 
 - name: Add WEBHOOK_TOKEN
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^WEBHOOK_TOKEN='
     line: 'WEBHOOK_TOKEN={{ webhook_token }}'
 
 - name: Change CATEGORY_CREATE_ENABLED
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^CATEGORY_CREATE_ENABLED='
     line: 'CATEGORY_CREATE_ENABLED=true'
 
 - name: Add RENTRANGE_API_KEY
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^RENTRANGE_API_KEY='
     line: 'RENTRANGE_API_KEY={{ rentrange_key }}'
 
 - name: Add AWS_LAMBDA_ACCESS_KEY
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^AWS_LAMBDA_ACCESS_KEY='
     line: 'AWS_LAMBDA_ACCESS_KEY={{ aws_lambda_key }}'
 
 - name: Add AWS_LAMBDA_ACCESS_SECRET
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^AWS_LAMBDA_ACCESS_SECRET='
     line: 'AWS_LAMBDA_ACCESS_SECRET={{ aws_lambda_secret }}'
 
 - name: Add AWS_LAMBDA_REGION
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^AWS_LAMBDA_REGION='
     line: 'AWS_LAMBDA_REGION={{ aws_lambda_region }}'
 
 - name: Add AWS_LAMBDA_S3
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^AWS_LAMBDA_S3='
     line: 'AWS_LAMBDA_S3={{ aws_lambda_s3 }}'
 
 - name: Add CONVERTER_DRIVER
   lineinfile:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.env
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^CONVERTER_DRIVER='
     line: 'CONVERTER_DRIVER=lambda'
 
 - name: Create idea conf directory
   file:
-    path: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.idea
+    path: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.idea
     state: directory
     mode: 0777
 
 - name: Copy idea conf files
   copy:
     src: "files/idea/"
-    dest: "/Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/.idea/"
+    dest: "/Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/.idea/"
