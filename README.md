@@ -84,7 +84,7 @@ Example Playbook
         php_version:
         app_env:
       roles:
-        - tenantcloud.ansible_role_dashboard
+        - tenantcloud.dashboard
 
 License
 -------

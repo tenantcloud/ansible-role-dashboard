@@ -56,7 +56,13 @@ server {
     add_header X-Content-Type-Options nosniff;
 
     location / {
-		try_files $uri $uri/ /index.html /index.php?$query_string;
+        try_files $uri $uri/ /index.html /index.php?$query_string;
+        error_page 503 /index.html;
+        location = /index.html {
+          root /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/public;
+          expires -1;
+        }
+        if (-f $document_root/index.html) { return 503; }
     }
 
     location ~ \.php$ {
