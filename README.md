@@ -1,4 +1,4 @@
-tenantcloud.ansible_role_dashboard
+tenantcloud.dashboard
 =========
 
 Ansible role for install dashboard project.
@@ -9,8 +9,8 @@ Ansible role for install dashboard project.
 Requirements
 ------------
 
-Install tenantcloud.ansible_role_software_common
-Install tenantcloud.ansible_role_software_dev
+Install tenantcloud.software_common
+Install tenantcloud.software_dev
 
 Role Variables
 --------------
@@ -41,6 +41,7 @@ aws_lambda_s3:
 aws_default_region:
 php_api_version:
 php_version:
+app_env:
 
 Dependencies
 ------------
@@ -81,8 +82,9 @@ Example Playbook
         aws_default_region:
         php_api_version:
         php_version:
+        app_env:
       roles:
-        - tenantcloud.ansible_role_dashboard
+        - tenantcloud.dashboard
 
 License
 -------

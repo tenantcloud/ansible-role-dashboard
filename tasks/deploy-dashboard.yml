@@ -1,6 +1,6 @@
 ---
 - name: Run deploy dashboard script
-  command: /Users/{{ work_user }}/{{ work_dir }}/{{ dashboard_dir }}/sh/update.sh
+  command: /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/sh/update.sh
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
@@ -12,4 +12,4 @@
 
 - name: Copy info file
   become: true
-  template: src=info.txt.j2 dest=/Users/{{ work_user }}/Desktop/{{ dashboard_dir }}.txt
+  template: src=info.txt.j2 dest=/Users/{{ work_user }}/Desktop/home.{{ work_domain }}.txt

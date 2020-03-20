@@ -1,4 +1,4 @@
 ---
-# vars file for tenantcloud.ansible_role_dashboard
+# vars file for tenantcloud.dashboard
 
 ansible_python_interpreter: "/usr/local/bin/python3"
