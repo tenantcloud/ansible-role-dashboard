@@ -1,13 +1,13 @@
 ---
 - name: Copy docker enviromment file
   copy:
-    src: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env.example
-    dest: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}/.env
+    src: $HOME/{{ work_dir }}/{{ docker_dir }}/.env.example
+    dest: $HOME/{{ work_dir }}/{{ docker_dir }}/.env
     remote_src: true
 
 - name: Change docker settings
   lineinfile:
-    path: /Users/{{ work_user }}/.docker/config.json
+    path: $HOME/.docker/config.json
     regexp: '  "credsStore'
     state: absent
 
@@ -24,4 +24,4 @@
 
 - name: Start services via docker-compose
   docker_compose:
-    project_src: /Users/{{ work_user }}/{{ work_dir }}/{{ docker_dir }}
+    project_src: $HOME/{{ work_dir }}/{{ docker_dir }}

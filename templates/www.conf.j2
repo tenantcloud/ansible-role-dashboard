@@ -2,7 +2,7 @@ server {
     listen 80;
     listen 443 ssl http2;
     server_name *.{{ work_domain }};
-    root /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/public;
+    root $HOME/{{ work_dir }}/home.{{ work_domain }}/public;
     index index.html index.htm index.php;
 
     # redirect from http to https
@@ -59,7 +59,7 @@ server {
         try_files $uri $uri/ /index.html /index.php?$query_string;
         error_page 503 /index.html;
         location = /index.html {
-          root /Users/{{ work_user }}/{{ work_dir }}/home.{{ work_domain }}/public;
+          root $HOME/{{ work_dir }}/home.{{ work_domain }}/public;
           expires -1;
         }
         if (-f $document_root/index.html) { return 503; }
@@ -77,8 +77,8 @@ server {
 	  expires -1;
 	}
 
-    access_log /usr/local/var/log/nginx/home.{{ work_domain }}.access.log;
-    error_log  /usr/local/var/log/nginx/home.{{ work_domain }}.error.log;
+    access_log /usr/local/var/log/nginx/home.{{ work_domain }}-access.log;
+    error_log  /usr/local/var/log/nginx/home.{{ work_domain }}-error.log;
 
     client_max_body_size 512m;
 }

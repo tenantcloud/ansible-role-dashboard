@@ -1,6 +1,6 @@
 ---
 - name: Copy MySQL script
-  template: src=mysql.sh.j2 dest=/Users/{{ work_user }}/{{ work_dir }}/mysql/mysql.sh mode=0777
+  template: src=mysql.sh.j2 dest=$HOME/{{ work_dir }}/mysql/mysql.sh mode=0777
 
 - name: Check if port 3306 is listening
   wait_for:
@@ -10,7 +10,7 @@
     state: started
 
 - name: Create databases and read-only user
-  command: /Users/{{ work_user }}/{{ work_dir }}/mysql/mysql.sh
+  command: $HOME/{{ work_dir }}/mysql/mysql.sh
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
