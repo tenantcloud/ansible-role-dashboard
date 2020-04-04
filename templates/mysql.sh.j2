@@ -1,9 +1,0 @@
-#!/bin/bash
-
-sleep 30
-/usr/local/opt/mysql-client/bin/mysql -uroot -h127.0.0.1 <<MYSQL_SCRIPT
-CREATE DATABASE IF NOT EXISTS {{ database }};
-CREATE USER IF NOT EXISTS 'read'@'%' IDENTIFIED BY 'read';
-GRANT SELECT, SHOW VIEW ON *.* TO 'read'@'%';
-FLUSH PRIVILEGES;
-MYSQL_SCRIPT

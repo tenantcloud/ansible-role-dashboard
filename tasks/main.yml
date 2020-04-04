@@ -3,6 +3,6 @@
 - include: configure-nginx-settings.yml
 - include: configure-php-settings.yml
 - include: docker-compose.yml
-- include: configure-mysql-settings.yml
 - include: configure-dnsmasq.yml
+- include: configure-mysql-settings.yml
 - include: deploy-dashboard.yml

@@ -1,16 +1,29 @@
 ---
-- name: Copy MySQL script
-  template: src=mysql.sh.j2 dest=$HOME/{{ work_dir }}/mysql/mysql.sh mode=0777
+- name: Install PyMySQL
+  pip:
+    name: pymysql
+    executable: /usr/local/bin/pip3
 
 - name: Check if port 3306 is listening
   wait_for:
     host: 127.0.0.1
     port: 3306
-    delay: 5
-    state: started
+    delay: 45
 
-- name: Create databases and read-only user
-  command: $HOME/{{ work_dir }}/mysql/mysql.sh
-  environment:
-    PATH: "{{ lookup('env','PATH') }}"
-  changed_when: false
+- name: Create database
+  mysql_db:
+    login_user: "{{ mysql_admin_user }}"
+    login_password: "{{ mysql_admin_password }}"
+    name: "{{ mysql_database }}"
+    login_host: "{{ mysql_host }}"
+    state: present
+
+- name: Create database user
+  mysql_user:
+    login_user: "{{ mysql_admin_user }}"
+    login_password: "{{ mysql_admin_password }}"
+    name: "{{ mysql_db_user }}"
+    password: "{{ mysql_db_user_pass }}"
+    host: "%"
+    priv: '{{ mysql_database }}.*:ALL,GRANT'
+    state: present
