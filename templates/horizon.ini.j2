@@ -1,8 +1,11 @@
-[program:home.{{ work_domain }}-horizon]
+[program:horizon-home.{{ work_domain }}]
+directory={{ ansible_env.HOME }}/{{ work_dir }}/home.{{ work_domain }}
+command=/usr/local/opt/{{ php_version }}/bin/php artisan horizon
+
 process_name=%(program_name)s_%(process_num)02d
-command=/usr/local/opt/{{ php_version }}/bin/php /Users/{{ ansible_user }}/{{ work_dir }}/home.{{ work_domain }}/artisan horizon
 autostart=true
 autorestart=true
 user={{ ansible_user }}
+numprocs=1
 redirect_stderr=true
-stdout_logfile=/usr/local/var/log/supervisor-home.{{ work_domain }}-horizon.out.log
+stdout_logfile={{ ansible_env.HOME }}/.log/horizon-home.{{ work_domain }}.log

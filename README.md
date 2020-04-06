@@ -23,7 +23,12 @@ dashboard_dir:
 docker_dir:
 docker_git:
 work_domain:
-database:
+mysql_host:
+mysql_admin_user:
+mysql_admin_password:
+mysql_database:
+mysql_db_user:
+mysql_db_user_pass:
 pusher_app_id:
 pusher_app_key:
 pusher_app_secret:
@@ -64,7 +69,12 @@ Example Playbook
         docker_dir:
         docker_git:
         work_domain:
-        database:
+        mysql_host:
+        mysql_admin_user:
+        mysql_admin_password:
+        mysql_database:
+        mysql_db_user:
+        mysql_db_user_pass:
         pusher_app_id:
         pusher_app_key:
         pusher_app_secret:

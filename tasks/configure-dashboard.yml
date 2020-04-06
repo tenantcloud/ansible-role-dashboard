@@ -62,7 +62,7 @@
   changed_when: false
 
 - name: Copy horizon config
-  template: src=horizon.ini.j2 dest=/usr/local/etc/supervisor.d/home.{{ work_domain }}-horizon.ini
+  template: src=horizon.ini.j2 dest=/usr/local/etc/supervisor.d/horizon-home.{{ work_domain }}.ini
   changed_when: false
 
 - name: Start supervisor
@@ -127,13 +127,13 @@
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_DATABASE='
-    line: 'DB_DATABASE={{ database }}'
+    line: 'DB_DATABASE={{ mysql_database }}'
 
 - name: Add DB_USERNAME
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_USERNAME='
-    line: 'DB_USERNAME={{ mysql_user }}'
+    line: 'DB_USERNAME={{ mysql_admin_user }}'
 
 - name: Add DB_PASSWORD
   lineinfile:
@@ -145,7 +145,7 @@
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_ACTIVITY_LOG_DATABASE='
-    line: 'DB_ACTIVITY_LOG_DATABASE={{ database }}'
+    line: 'DB_ACTIVITY_LOG_DATABASE={{ mysql_database }}'
 
 - name: Add DB_ACTIVITY_LOG_PASSWORD
   lineinfile:

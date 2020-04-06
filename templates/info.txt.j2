@@ -2,7 +2,7 @@ Congratulations, you have successfully installed home.{{ work_domain }} project.
 
  Ansible role for install home.{{ work_domain }} project.
 
-  - {{ database }}_dashboard
+  - {{ mysql_database }}_dashboard
 
   URL Dashboard site    - https://home.{{ work_domain }}
   URL Minio site        - https://home.{{ work_domain }}:9002
@@ -17,7 +17,7 @@ Congratulations, you have successfully installed home.{{ work_domain }} project.
 
  Mysql server and database are used in the docker container, to connect to mysql server we use the command:
 
- mysql -u{{ mysql_user }} -h127.0.0.1
+ mysql -u{{ mysql_admin_user }} -h127.0.0.1
 
  If you want to pull the latest changes, switch to the necessary branch and run the script,
 which can be found on the following path - $HOME/{{ work_dir }}/home.{{ work_domain }}/sh/update.sh
