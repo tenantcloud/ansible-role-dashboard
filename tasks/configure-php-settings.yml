@@ -10,13 +10,13 @@
 
 - name: Change openssl.cafile string
   lineinfile:
-    path: /usr/local/etc/php/7.1/php.ini
+    path: /usr/local/etc/php/7.4/php.ini
     regexp: '^openssl.cafile ='
     line: 'openssl.cafile = /usr/local/etc/nginx/ssl/cacert.pem'
 
 - name: Change openssl.capath string
   lineinfile:
-    path: /usr/local/etc/php/7.1/php.ini
+    path: /usr/local/etc/php/7.4/php.ini
     regexp: '^openssl.capath ='
     line: ';openssl.capath ='
 
