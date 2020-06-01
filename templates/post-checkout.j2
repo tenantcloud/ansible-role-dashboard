@@ -1,0 +1,13 @@
+#!/bin/sh
+
+source $HOME/{{ work_dir }}/vault/vault_functions.sh
+
+VAULT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
+
+vault_check_path $VAULT_BRANCH
+
+if [[ $VAULT_PATH  == "" ]]; then
+  vault_put $VAULT_BRANCH .env
+fi
+
+vault_get $VAULT_BRANCH .env
