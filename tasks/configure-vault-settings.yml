@@ -1,0 +1,26 @@
+---
+- name: Copy vault functions script
+  template: src=vault_functions.sh.j2 dest=$HOME/{{ work_dir }}/vault/vault_functions.sh mode=a+x
+
+- name: Сopy post-checkout script and set permissions
+  template: src=post-checkout.j2 dest=$HOME/{{ work_dir }}/home.{{ work_domain }}/.git/hooks/post-checkout mode=a+x
+
+- name: Copy vault configuration file
+  template: src=vault-configuration.j2 dest=$HOME/.vault-configuration
+
+- name: Export PATH to vault functions script
+  lineinfile:
+    dest: $HOME/.zshrc
+    line: source $HOME/{{ work_dir }}/vault/vault_functions.sh
+    state: present
+
+- name: Export PATH to vault configuration file
+  lineinfile:
+    dest: $HOME/.zshrc
+    line: source $HOME/.vault-configuration
+    insertafter: source $HOME/{{ work_dir }}/vault_functions.sh
+    state: present
+
+- name: source zshrc
+  command: /bin/zsh -c "source ~/.zshrc"
+  changed_when: false

@@ -5,4 +5,5 @@
 - include: docker-compose.yml
 - include: configure-dnsmasq.yml
 - include: configure-mysql-settings.yml
+- include: configure-vault-settings.yml
 - include: deploy-dashboard.yml

@@ -17,6 +17,12 @@
     state: directory
     mode: 0777
 
+- name: Create vault directory
+  file:
+    path: $HOME/{{ work_dir }}/vault
+    state: directory
+    mode: 0777
+
 - name: Clone TenantCloud dashboard project
   git:
     repo: "{{ dashboard_git }}"
