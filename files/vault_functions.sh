@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 VAULT_CONFIG_FILE=~/.vault-configuration
-VAULT_KEY_FILE=/etc/vault/init.file
 
 function message() {
     echo "================================================================================"
