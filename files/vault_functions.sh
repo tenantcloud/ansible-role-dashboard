@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 VAULT_CONFIG_FILE=~/.vault-configuration
+VAULT_KEY_FILE=/etc/vault/init.file
 
 function message() {
     echo "================================================================================"
@@ -21,13 +22,21 @@ function messageError() {
     exit 1
 }
 
+function get_env_value() {
+    if [[ -f "$2" ]]; then
+        VARIABLE=$1
+        FILENAME=$2
+        echo $(sed -n -e "s/^\s*$VARIABLE\s*=//p" $FILENAME)
+    fi
+}
+
 function vault_put() {
   source $VAULT_CONFIG_FILE
   vault_get_token
-  VAULT_BRANCH=$1
+  VAULT_SECRETS=$1
   ENV_FILE=$2
   MSG="Put to vault"
-  vault kv put branch/$VAULT_BRANCH/env $(egrep -v '^#' $ENV_FILE | xargs) \
+  vault kv put $VAULT_SECRETS $(egrep -v '^#' $ENV_FILE | xargs) \
     && message "Success. $MSG" \
     || messageError "Error. $MSG"
 }
@@ -35,10 +44,10 @@ function vault_put() {
 function vault_get() {
   source $VAULT_CONFIG_FILE
   vault_get_token
-  VAULT_BRANCH=$1
+  VAULT_SECRETS=$1
   ENV_FILE=$2
   MSG="Get from vault"
-  vault kv get branch/$VAULT_BRANCH/env | sed 's/\ \{1,\}/=/g' | sed 1,11d > /tmp/.env.vault
+  vault kv get $VAULT_SECRETS | sed 's/\ \{1,\}/=/g' | sed 1,11d > /tmp/.env.vault
   vault_diff .env \
     && message "Success. $MSG" \
     || messageError "Error. $MSG"
@@ -77,8 +86,8 @@ function vault_check_path() {
   source $VAULT_CONFIG_FILE
   vault_get_token
   MSG="Get path from vault server"
-  VAULT_BRANCH=$1
-  VAULT_PATH=$(vault kv list branch/$VAULT_BRANCH/)
+  VAULT_SECRETS=$1
+  VAULT_PATH=$(vault kv get $VAULT_SECRETS | sed 1,8d | head -1)
   echo $VAULT_PATH \
     && message "Success. $MSG" \
     || messageError "Error. $MSG"
