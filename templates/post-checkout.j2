@@ -8,10 +8,10 @@ VAULT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
 
 APP_ENV=$(get_env_value APP_ENV .env)
 
-vault_check_path "dev/$PROJECT_NAME/$VAULT_BRANCH"
+vault_check_path "$PROJECT_NAME/dev/$VAULT_BRANCH"
 
 if [[ $VAULT_PATH  == "" ]]; then
-  vault_put "dev/$PROJECT_NAME/$VAULT_BRANCH" .env
+  vault_put "$PROJECT_NAME/dev/$VAULT_BRANCH" .env
 fi
 
-vault_get "dev/$PROJECT_NAME/$VAULT_BRANCH" .env
+vault_get "$PROJECT_NAME/dev/$VAULT_BRANCH" .env
