@@ -2,3 +2,6 @@
 # vars file for tenantcloud.dashboard
 
 ansible_python_interpreter: "/usr/local/bin/python3"
+php_api_version: "20190902"
+php_version: "php@7.4"
+php_release: "7.4"
