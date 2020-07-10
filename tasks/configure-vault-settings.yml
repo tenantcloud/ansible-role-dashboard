@@ -4,17 +4,10 @@
     src: "files/vault-configuration"
     dest: "$HOME/.vault-configuration"
 
-- name: Export PATH to vault functions script
-  lineinfile:
-    dest: $HOME/.zshrc
-    line: source $HOME/{{ work_dir }}/vault/vault_functions.sh
-    state: present
-
 - name: Export PATH to vault configuration file
   lineinfile:
     dest: $HOME/.zshrc
     line: source $HOME/.vault-configuration
-    insertafter: source $HOME/{{ work_dir }}/vault_functions.sh
     state: present
 
 - name: source zshrc
