@@ -1,0 +1,39 @@
+---
+- name: Clone bcl project
+  git:
+    repo: "{{ bcl_git }}"
+    dest: $HOME/{{ work_dir }}/{{ bcl_dir }}
+    version: "{{ bcl_git_branch }}"
+    force: true
+
+- name: Run bcl setup install
+  shell: cd $HOME/{{ work_dir }}/{{ bcl_dir }} && ./cli setup install
+  environment:
+    PATH: "{{ lookup('env','PATH') }}"
+  changed_when: false
+
+- name: Enable autocomplete for zsh
+  blockinfile:
+    path: ~/.zshrc
+    block: |
+      autoload -U +X compinit && compinit
+      autoload -U +X bashcompinit && bashcompinit
+      source ~/.bash_completion
+      export PATH="$HOME/.local/bin:$PATH"
+
+- name: Source zshrc
+  become: false
+  command: /bin/zsh -c "source ~/.zshrc"
+  changed_when: false
+
+- name: Run package installation
+  shell: cd $HOME/{{ work_dir }}/home.{{ work_domain }} && bcl package install
+  environment:
+    PATH: "{{ lookup('env','PATH') }}"
+  changed_when: false
+
+- name: Create symbolic link
+  file:
+    src: $HOME/{{ work_dir }}/home.{{ work_domain }}/cli/{{ bcl_package }}
+    dest: /usr/local/bin/{{ bcl_package }}
+    state: link

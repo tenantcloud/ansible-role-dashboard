@@ -6,4 +6,5 @@
 - include: configure-dnsmasq.yml
 - include: configure-mysql-settings.yml
 - include: configure-vault-settings.yml
+- include: configure-bcl-settings.yml
 - include: deploy-dashboard.yml
