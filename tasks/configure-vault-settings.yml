@@ -1,0 +1,15 @@
+---
+- name: Copy vault configuration file
+  copy:
+    src: "files/vault-configuration"
+    dest: "$HOME/.vault-configuration"
+
+- name: Export PATH to vault configuration file
+  lineinfile:
+    dest: $HOME/.zshrc
+    line: source $HOME/.vault-configuration
+    state: present
+
+- name: source zshrc
+  command: /bin/zsh -c "source ~/.zshrc"
+  changed_when: false

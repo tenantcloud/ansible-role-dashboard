@@ -11,9 +11,21 @@
     state: directory
     mode: 0777
 
+- name: Create log directory
+  file:
+    path: $HOME/.log
+    state: directory
+    mode: 0777
+
 - name: Create mysql db directory
   file:
     path: $HOME/{{ work_dir }}/mysql
+    state: directory
+    mode: 0777
+
+- name: Create vault directory
+  file:
+    path: $HOME/{{ work_dir }}/vault
     state: directory
     mode: 0777
 

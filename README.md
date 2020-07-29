@@ -46,6 +46,7 @@ aws_lambda_s3:
 aws_default_region:
 php_api_version:
 php_version:
+php_release:
 app_env:
 
 Dependencies
@@ -90,8 +91,6 @@ Example Playbook
         aws_lambda_region:
         aws_lambda_s3:
         aws_default_region:
-        php_api_version:
-        php_version:
         app_env:
       roles:
         - tenantcloud.dashboard
