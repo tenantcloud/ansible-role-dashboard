@@ -5,6 +5,12 @@
     dest: $HOME/{{ work_dir }}/{{ docker_dir }}/.env
     remote_src: true
 
+- name: Change TC_DASHBOARD_DIR
+  lineinfile:
+    path: $HOME/{{ work_dir }}/{{ docker_dir }}/.env
+    regexp: '^TC_DASHBOARD_DIR='
+    line: 'TC_DASHBOARD_DIR=~/{{ work_dir }}/home.{{ work_domain }}'
+
 - name: Change docker settings
   lineinfile:
     path: $HOME/.docker/config.json
