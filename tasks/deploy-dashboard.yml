@@ -15,4 +15,4 @@
   template:
     src: info.txt.j2
     dest: $HOME/Desktop/home.{{ work_domain }}.txt
-    mode: 0644
+    mode: 0777

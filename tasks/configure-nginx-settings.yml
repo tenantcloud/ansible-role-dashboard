@@ -54,7 +54,7 @@
   become: true
   lineinfile:
     state: present
-    line: 127.0.0.1 home.{{ work_domain }} {{ work_domain }} www.{{ work_domain }}    # yamllint disable-line rule:line-length
+    line: "{{ local_hosts_record }}"
     create: true
     dest: /etc/hosts
     mode: 0644

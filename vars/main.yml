@@ -9,3 +9,9 @@ composer_url: "https://getcomposer.org/installer"
 add_trusted_cert_command: "security add-trusted-cert -d -r trustRoot
 -k /Library/Keychains/System.keychain
 /usr/local/etc/nginx/ssl/{{ mysql_database }}-rootCA.crt"
+protractor_path: "$HOME/{{ work_dir }}/home.{{ work_domain }}\
+/tests/Protractor"
+git_hooks_path: "$HOME/{{ work_dir }}/home.{{ work_domain }}\
+/docs/installation/git-hooks"
+local_hosts_record: "127.0.0.1 home.{{ work_domain }}
+ {{ work_domain }} www.{{ work_domain }}"

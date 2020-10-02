@@ -56,6 +56,9 @@ php_release:
 composer_url:
 add_trusted_cert_command:
 app_env:
+protractor_path:
+git_hooks_path:
+local_hosts_record:
 
 Dependencies
 ------------

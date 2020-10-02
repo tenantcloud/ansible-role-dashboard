@@ -39,20 +39,20 @@
 
 - name: Сopy pre-commit script and set permissions
   copy:
-    src: '$HOME/{{ work_dir }}/home.{{ work_domain }}/docs/installation/git-hooks/pre-commit'   # yamllint disable-line rule:line-length
+    src: '{{ git_hooks_path }}/pre-commit'
     dest: '$HOME/{{ work_dir }}/home.{{ work_domain }}/.git/hooks/pre-commit'
     mode: a+x
     remote_src: true
 
 - name: Get protractorEnvironment file exist status
   stat:
-    path: $HOME/{{ work_dir }}/home.{{ work_domain }}/tests/Protractor/protractorEnvironment.example.js   # yamllint disable-line rule:line-length
+    path: '{{ protractor_path }}/protractorEnvironment.example.js'
   register: file
 
 - name: Сopy protractor file
   copy:
-    src: '$HOME/{{ work_dir }}/home.{{ work_domain }}/tests/Protractor/protractorEnvironment.example.js'    # yamllint disable-line rule:line-length
-    dest: '$HOME/{{ work_dir }}/home.{{ work_domain }}/tests/Protractor/protractorEnvironment.js'   # yamllint disable-line rule:line-length
+    src: '{{ protractor_path }}/protractorEnvironment.example.js'
+    dest: '{{ protractor_path }}/protractorEnvironment.js'
     mode: 0644
     remote_src: true
   when: file.stat.exists
@@ -64,10 +64,15 @@
     mode: 0755
   become: false
 
+- name: Remove supervisor config from native install
+  file:
+    path: /usr/local/etc/supervisord.conf
+    state: absent
+
 - name: Copy supervisor config
   template:
-    src: supervisord.ini.j2
-    dest: /usr/local/etc/supervisord.ini
+    src: supervisord.conf.j2
+    dest: /usr/local/etc/supervisord.conf
     mode: 0644
   changed_when: false
 
@@ -78,8 +83,8 @@
     mode: 0644
   changed_when: false
 
-- name: Start supervisor
-  command: /usr/local/bin/brew services start supervisor
+- name: Restart supervisor
+  command: /usr/local/bin/brew services restart supervisor
   changed_when: false
 
 - name: Copy and setup TenantCloud dashboard environment file
