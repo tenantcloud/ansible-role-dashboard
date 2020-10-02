@@ -1,6 +1,6 @@
 
-<br><img src="https://github.com/tenantcloud/ansible-role-dashboard/workflows/Ansible Lint/badge.svg?branch-master"><br>
-<br><img src="https://github.com/tenantcloud/ansible-role-dashboard/workflows/Yaml Lint/badge.svg?branch-master"><br>
+<img src="https://github.com/tenantcloud/ansible-role-dashboard/workflows/Ansible Lint/badge.svg?branch-master" alt="">
+<img src="https://github.com/tenantcloud/ansible-role-dashboard/workflows/Yaml Lint/badge.svg?branch-master" alt="">
 
 tenantcloud.dashboard
 =========
