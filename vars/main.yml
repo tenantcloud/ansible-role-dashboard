@@ -5,3 +5,7 @@ ansible_python_interpreter: "/usr/local/bin/python3"
 php_api_version: "20190902"
 php_version: "php@7.4"
 php_release: "7.4"
+composer_url: "https://getcomposer.org/installer"
+add_trusted_cert_command: "security add-trusted-cert -d -r trustRoot
+-k /Library/Keychains/System.keychain
+/usr/local/etc/nginx/ssl/{{ mysql_database }}-rootCA.crt"

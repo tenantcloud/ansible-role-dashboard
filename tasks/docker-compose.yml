@@ -3,6 +3,7 @@
   copy:
     src: $HOME/{{ work_dir }}/{{ docker_dir }}/.env.example
     dest: $HOME/{{ work_dir }}/{{ docker_dir }}/.env
+    mode: 0644
     remote_src: true
 
 - name: Change TC_DASHBOARD_DIR
@@ -10,6 +11,7 @@
     path: $HOME/{{ work_dir }}/{{ docker_dir }}/.env
     regexp: '^TC_DASHBOARD_DIR='
     line: 'TC_DASHBOARD_DIR=~/{{ work_dir }}/home.{{ work_domain }}'
+    mode: 0644
 
 - name: Change docker settings
   lineinfile:
@@ -23,7 +25,7 @@
     state: absent
 
 - name: Docker login (must "--no-include-email")
-  shell: "$(aws ecr get-login --region {{ aws_default_region }} --no-include-email)"
+  shell: "$(aws ecr get-login --region {{ aws_default_region }} --no-include-email)"    # yamllint disable-line rule:line-length
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   changed_when: false

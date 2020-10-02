@@ -1,3 +1,7 @@
+
+<br><img src="https://github.com/tenantcloud/ansible-role-dashboard/workflows/Ansible Lint/badge.svg?branch-master"><br>
+<br><img src="https://github.com/tenantcloud/ansible-role-dashboard/workflows/Yaml Lint/badge.svg?branch-master"><br>
+
 tenantcloud.dashboard
 =========
 
@@ -22,6 +26,8 @@ dashboard_git_branch:
 dashboard_dir:
 docker_dir:
 docker_git:
+bcl_url:
+bcl_package_install:
 work_domain:
 mysql_host:
 mysql_admin_user:
@@ -47,6 +53,8 @@ aws_default_region:
 php_api_version:
 php_version:
 php_release:
+composer_url:
+add_trusted_cert_command:
 app_env:
 
 Dependencies
@@ -69,6 +77,8 @@ Example Playbook
         dashboard_dir:
         docker_dir:
         docker_git:
+        bcl_url:
+        bcl_package_install: 'false'
         work_domain:
         mysql_host:
         mysql_admin_user:
@@ -91,7 +101,7 @@ Example Playbook
         aws_lambda_region:
         aws_lambda_s3:
         aws_default_region:
-        app_env:
+        app_env: "local"
       roles:
         - tenantcloud.dashboard
 

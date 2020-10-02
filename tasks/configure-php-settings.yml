@@ -5,7 +5,7 @@
     dest: /usr/local/etc/nginx/ssl/cacert.pem
 
 - name: Add tenantcloud-root certificate to cacert.pem
-  shell: cat /usr/local/etc/nginx/ssl/tenantcloud-rootCA.crt >> /usr/local/etc/nginx/ssl/cacert.pem
+  shell: cat /usr/local/etc/nginx/ssl/tenantcloud-rootCA.crt >> /usr/local/etc/nginx/ssl/cacert.pem   # yamllint disable-line rule:line-length
   changed_when: false
 
 - name: Change openssl.cafile string
@@ -13,23 +13,25 @@
     path: /usr/local/etc/php/{{ php_release }}/php.ini
     regexp: '^openssl.cafile ='
     line: 'openssl.cafile = /usr/local/etc/nginx/ssl/cacert.pem'
+    mode: 0644
 
 - name: Change openssl.capath string
   lineinfile:
     path: /usr/local/etc/php/{{ php_release }}/php.ini
     regexp: '^openssl.capath ='
     line: ';openssl.capath ='
+    mode: 0644
 
 - name: Linked php
   command: /usr/local/bin/brew link --overwrite --force {{ php_version }}
   changed_when: false
 
 - name: Export PATH
-  command: echo 'export PATH="/usr/local/opt/{{ php_version }}/bin:$PATH"' >> ~/.zshrc
+  command: echo 'export PATH="/usr/local/opt/{{ php_version }}/bin:$PATH"' >> ~/.zshrc    # yamllint disable-line rule:line-length
   changed_when: false
 
 - name: Export PATH
-  command: echo 'export PATH="/usr/local/opt/{{ php_version }}/sbin:$PATH"' >> ~/.zshrc
+  command: echo 'export PATH="/usr/local/opt/{{ php_version }}/sbin:$PATH"' >> ~/.zshrc   # yamllint disable-line rule:line-length
   changed_when: false
 
 - name: Create conf.d directory
@@ -39,7 +41,10 @@
     mode: 0755
 
 - name: Copy ext-xdebug.ini
-  template: src=ext-xdebug.ini.j2 dest=/usr/local/etc/php/{{ php_release }}/conf.d/ext-xdebug.ini
+  template:
+    src: ext-xdebug.ini.j2
+    dest: /usr/local/etc/php/{{ php_release }}/conf.d/ext-xdebug.ini
+    mode: 0644
 
 - name: Delete opcache
   file:
@@ -91,7 +96,8 @@
 - name: Install composer
   shell: |
     set -o pipefail
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    curl -sS "{{ composer_url }}" |
+    php -- --install-dir=/usr/local/bin --filename=composer
   args:
     creates: /usr/local/bin/composer
     warn: false
