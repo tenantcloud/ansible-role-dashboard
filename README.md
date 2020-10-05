@@ -1,6 +1,6 @@
 
-<img src="https://github.com/tenantcloud/ansible-role-dashboard/workflows/Ansible Lint/badge.svg?branch-master" alt="">
-<img src="https://github.com/tenantcloud/ansible-role-dashboard/workflows/Yaml Lint/badge.svg?branch-master" alt="">
+![Ansible Lint](https://github.com/tenantcloud/ansible-role-dashboard/workflows/Ansible%20Lint/badge.svg?branch-master)
+![Yaml Lint](https://github.com/tenantcloud/ansible-role-dashboard/workflows/Yaml%20Lint/badge.svg?branch-master)
 
 tenantcloud.dashboard
 =========
@@ -70,6 +70,7 @@ Dependencies
 Example Playbook
 ----------------
 
+```yaml
     - hosts: localhost
       become: no
       vars:
@@ -107,6 +108,7 @@ Example Playbook
         app_env: "local"
       roles:
         - tenantcloud.dashboard
+```
 
 License
 -------
