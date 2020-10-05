@@ -8,7 +8,6 @@ tenantcloud.dashboard
 Ansible role for install dashboard project.
 
   - tenantcloud_dashboard
-  - keller_dashboard
 
 Requirements
 ------------
