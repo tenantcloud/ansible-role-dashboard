@@ -6,6 +6,7 @@
     line: nameserver 127.0.0.1
     create: true
     dest: /etc/resolver/dev
+    mode: 0644
 
 - name: Resolve *.dev to localhost
   lineinfile:
@@ -13,10 +14,14 @@
     line: address=/dev/127.0.0.1
     create: true
     dest: /usr/local/etc/dnsmasq.conf
+    mode: 0644
 
 - name: Copy dnsmasq plist
   become: true
-  template: src=homebrew.mxcl.dnsmasq.plist.j2 dest=/Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+  template:
+    src: homebrew.mxcl.dnsmasq.plist.j2
+    dest: /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+    mode: 0644
 
 - name: Enable autostart dnsmasq
   become: true

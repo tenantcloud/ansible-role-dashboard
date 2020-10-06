@@ -12,16 +12,20 @@
     mode: 0777
 
 - name: Copy nginx configured files
-  template: src=www.conf.j2 dest=/usr/local/etc/nginx/servers/home.{{ work_domain }}.conf
+  template:
+    src: www.conf.j2
+    dest: /usr/local/etc/nginx/servers/home.{{ work_domain }}.conf
+    mode: 0644
 
 - name: Copy nginx ssl certificates
   copy:
     src: $HOME/{{ work_dir }}/home.{{ work_domain }}/docs/installation/ssl
     dest: /usr/local/etc/nginx
+    mode: 0777
     remote_src: true
 
 - name: Add root certificate to trust
-  command: security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /usr/local/etc/nginx/ssl/tenantcloud-rootCA.crt
+  command: "{{ add_trusted_cert_command }}"
   become: true
   changed_when: false
 
@@ -29,24 +33,28 @@
   copy:
     src: /usr/local/etc/nginx/ssl/tenantcloud.dev.key
     dest: $HOME/.minio/private.key
+    mode: 0644
     remote_src: true
 
 - name: Copy root public key certificate to minio folder
   copy:
     src: /usr/local/etc/nginx/ssl/tenantcloud.dev.crt
     dest: $HOME/.minio/public.crt
+    mode: 0644
     remote_src: true
 
 - name: Copy nginx ssl certificates to minio folder
   copy:
     src: /usr/local/etc/nginx/ssl/
     dest: $HOME/.minio
+    mode: 0700
     remote_src: true
 
 - name: Add hostname to hosts file
   become: true
   lineinfile:
     state: present
-    line: 127.0.0.1 home.{{ work_domain }} {{ work_domain }} www.{{ work_domain }}
+    line: "{{ local_hosts_record }}"
     create: true
     dest: /etc/hosts
+    mode: 0644

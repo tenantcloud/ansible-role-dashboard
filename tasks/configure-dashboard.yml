@@ -23,12 +23,6 @@
     state: directory
     mode: 0777
 
-- name: Create vault directory
-  file:
-    path: $HOME/{{ work_dir }}/vault
-    state: directory
-    mode: 0777
-
 - name: Clone TenantCloud dashboard project
   git:
     repo: "{{ dashboard_git }}"
@@ -45,20 +39,21 @@
 
 - name: Сopy pre-commit script and set permissions
   copy:
-    src: '$HOME/{{ work_dir }}/home.{{ work_domain }}/docs/installation/git-hooks/pre-commit'
+    src: '{{ git_hooks_path }}/pre-commit'
     dest: '$HOME/{{ work_dir }}/home.{{ work_domain }}/.git/hooks/pre-commit'
     mode: a+x
     remote_src: true
 
 - name: Get protractorEnvironment file exist status
   stat:
-    path: $HOME/{{ work_dir }}/home.{{ work_domain }}/tests/Protractor/protractorEnvironment.example.js
+    path: '{{ protractor_path }}/protractorEnvironment.example.js'
   register: file
 
 - name: Сopy protractor file
   copy:
-    src: '$HOME/{{ work_dir }}/home.{{ work_domain }}/tests/Protractor/protractorEnvironment.example.js'
-    dest: '$HOME/{{ work_dir }}/home.{{ work_domain }}/tests/Protractor/protractorEnvironment.js'
+    src: '{{ protractor_path }}/protractorEnvironment.example.js'
+    dest: '{{ protractor_path }}/protractorEnvironment.js'
+    mode: 0644
     remote_src: true
   when: file.stat.exists
 
@@ -69,22 +64,34 @@
     mode: 0755
   become: false
 
+- name: Remove supervisor config from native install
+  file:
+    path: /usr/local/etc/supervisord.conf
+    state: absent
+
 - name: Copy supervisor config
-  template: src=supervisord.ini.j2 dest=/usr/local/etc/supervisord.ini
+  template:
+    src: supervisord.conf.j2
+    dest: /usr/local/etc/supervisord.conf
+    mode: 0644
   changed_when: false
 
 - name: Copy horizon config
-  template: src=horizon.ini.j2 dest=/usr/local/etc/supervisor.d/horizon-home.{{ work_domain }}.ini
+  template:
+    src: horizon.ini.j2
+    dest: /usr/local/etc/supervisor.d/horizon-home.{{ work_domain }}.ini
+    mode: 0644
   changed_when: false
 
-- name: Start supervisor
-  command: /usr/local/bin/brew services start supervisor
+- name: Restart supervisor
+  command: /usr/local/bin/brew services restart supervisor
   changed_when: false
 
 - name: Copy and setup TenantCloud dashboard environment file
   copy:
     src: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env.pipeline
     dest: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
+    mode: 0644
     remote_src: true
 
 - name: Change APP_VERSION
@@ -92,254 +99,310 @@
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^APP_VERSION='
     line: 'APP_VERSION=local'
+    mode: 0644
 
 - name: Change APP_ENV
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^APP_ENV='
     line: 'APP_ENV={{ app_env }}'
+    mode: 0644
 
 - name: Add APP_KEY
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^APP_KEY='
     line: 'APP_KEY={{ app_key }}'
+    mode: 0644
 
 - name: Change CACHE_DRIVER
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^CACHE_DRIVER='
     line: 'CACHE_DRIVER=redis'
+    mode: 0644
 
 - name: Change SESSION_DRIVER
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: 'SESSION_DRIVER='
     line: 'SESSION_DRIVER=redis'
+    mode: 0644
 
 - name: Change QUEUE_DRIVER
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: 'QUEUE_DRIVER='
     line: 'QUEUE_DRIVER=redis'
+    mode: 0644
 
 - name: Add HOST
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^HOST='
     line: 'HOST={{ work_domain }}'
+    mode: 0644
 
 - name: Add DB_HOST
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_HOST='
     line: 'DB_HOST=127.0.0.1'
+    mode: 0644
 
 - name: Add DB_DATABASE
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_DATABASE='
     line: 'DB_DATABASE={{ mysql_database }}'
+    mode: 0644
 
 - name: Add DB_USERNAME
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_USERNAME='
     line: 'DB_USERNAME={{ mysql_admin_user }}'
+    mode: 0644
 
 - name: Add DB_PASSWORD
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_PASSWORD='
     line: 'DB_PASSWORD='
+    mode: 0644
 
 - name: Add DB_ACTIVITY_LOG_DATABASE
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_ACTIVITY_LOG_DATABASE='
     line: 'DB_ACTIVITY_LOG_DATABASE={{ mysql_database }}'
+    mode: 0644
 
 - name: Add DB_ACTIVITY_LOG_PASSWORD
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DB_ACTIVITY_LOG_PASSWORD='
     line: 'DB_ACTIVITY_LOG_PASSWORD='
+    mode: 0644
 
 - name: Add REDIS_HOST
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^REDIS_HOST='
     line: 'REDIS_HOST=127.0.0.1'
+    mode: 0644
 
 - name: Add BROADCAST_DRIVER
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^BROADCAST_DRIVER='
     line: 'BROADCAST_DRIVER=pusher'
+    mode: 0644
 
 - name: Add PUSHER_APP_ID
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_ID='
     line: 'PUSHER_APP_ID={{ pusher_app_id }}'
+    mode: 0644
 
 - name: Add PUSHER_APP_KEY
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_KEY='
     line: 'PUSHER_APP_KEY={{ pusher_app_key }}'
+    mode: 0644
 
 - name: Add PUSHER_APP_SECRET
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_SECRET='
     line: 'PUSHER_APP_SECRET={{ pusher_app_secret }}'
+    mode: 0644
 
 - name: Add PUSHER_APP_URL
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_URL='
-    line: 'PUSHER_APP_URL=socket.{{ work_domain }}:9090'
+    line: 'PUSHER_APP_URL=socket.{{ work_domain }}'
+    mode: 0644
 
 - name: Add PUSHER_APP_PORT
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^PUSHER_APP_PORT='
     line: 'PUSHER_APP_PORT=6060'
+    mode: 0644
+
+- name: Add PUSHER_WEB_PORT
+  lineinfile:
+    path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
+    regexp: '^PUSHER_WEB_PORT='
+    line: 'PUSHER_WEB_PORT=9090'
+    mode: 0644
 
 - name: Add MAIL_DRIVER
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_DRIVER='
     line: 'MAIL_DRIVER=smtp'
+    mode: 0644
 
 - name: Add MAIL_HOST
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_HOST='
     line: 'MAIL_HOST=127.0.0.1'
+    mode: 0644
 
 - name: Add MAIL_USERNAME
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_USERNAME='
     line: '#MAIL_USERNAME=null'
+    mode: 0644
 
 - name: Add MAIL_PASSWORD
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_PASSWORD='
     line: '#MAIL_PASSWORD=null'
+    mode: 0644
 
 - name: Change MAIL_ENCRYPTION
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^MAIL_ENCRYPTION='
     line: 'MAIL_ENCRYPTION='
+    mode: 0644
 
 - name: Add DEFAULT_FILE_STORAGE
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^DEFAULT_FILE_STORAGE=s3'
     line: '#DEFAULT_FILE_STORAGE=s3'
+    mode: 0644
 
 - name: Add S3_KEY
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^S3_KEY='
     line: 'S3_KEY={{ minio_key }}'
+    mode: 0644
 
 - name: Add S3_SECRET_KEY
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^S3_SECRET_KEY='
     line: 'S3_SECRET_KEY={{ minio_secret }}'
+    mode: 0644
 
 - name: Add S3_BUCKET
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^S3_BUCKET='
     line: 'S3_BUCKET=local'
+    mode: 0644
 
 - name: Add S3_AWS_URL
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^S3_AWS_URL='
     line: 'S3_AWS_URL=https://home.{{ work_domain }}:9002'
+    mode: 0644
 
 - name: Add CDN_URL
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^CDN_URL='
     line: 'CDN_URL=https://home.{{ work_domain }}:9002/local'
+    mode: 0644
 
 - name: Add SCOUT_ELASTIC_HOST
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^SCOUT_ELASTIC_HOST='
     line: 'SCOUT_ELASTIC_HOST=127.0.0.1:9200'
+    mode: 0644
 
 - name: Add ZENCODER_API_KEY
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^ZENCODER_API_KEY='
     line: 'ZENCODER_API_KEY={{ zencoder_key }}'
+    mode: 0644
 
 - name: Add WEBHOOK_TOKEN
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^WEBHOOK_TOKEN='
     line: 'WEBHOOK_TOKEN={{ webhook_token }}'
+    mode: 0644
 
 - name: Change CATEGORY_CREATE_ENABLED
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^CATEGORY_CREATE_ENABLED='
     line: 'CATEGORY_CREATE_ENABLED=true'
+    mode: 0644
 
 - name: Add RENTRANGE_API_KEY
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^RENTRANGE_API_KEY='
     line: 'RENTRANGE_API_KEY={{ rentrange_key }}'
+    mode: 0644
 
 - name: Add AWS_LAMBDA_ACCESS_KEY
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^AWS_LAMBDA_ACCESS_KEY='
     line: 'AWS_LAMBDA_ACCESS_KEY={{ aws_lambda_key }}'
+    mode: 0644
 
 - name: Add AWS_LAMBDA_ACCESS_SECRET
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^AWS_LAMBDA_ACCESS_SECRET='
     line: 'AWS_LAMBDA_ACCESS_SECRET={{ aws_lambda_secret }}'
+    mode: 0644
 
 - name: Add AWS_LAMBDA_REGION
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^AWS_LAMBDA_REGION='
     line: 'AWS_LAMBDA_REGION={{ aws_lambda_region }}'
+    mode: 0644
 
 - name: Add AWS_LAMBDA_S3
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^AWS_LAMBDA_S3='
     line: 'AWS_LAMBDA_S3={{ aws_lambda_s3 }}'
+    mode: 0644
 
 - name: Add CONVERTER_DRIVER
   lineinfile:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.env
     regexp: '^CONVERTER_DRIVER='
     line: 'CONVERTER_DRIVER=lambda'
+    mode: 0644
 
 - name: Create idea conf directory
   file:
     path: $HOME/{{ work_dir }}/home.{{ work_domain }}/.idea
     state: directory
-    mode: 0777
+    mode: 0755
 
 - name: Copy idea conf files
   copy:
     src: "files/idea/"
     dest: "$HOME/{{ work_dir }}/home.{{ work_domain }}/.idea/"
+    mode: 0755
+
+- name: Oh-my-zsh add export NODE_OPTIONS
+  lineinfile:
+    dest: $HOME/.zshrc
+    line: export "NODE_OPTIONS=--max_old_space_size=2048"
+    state: present
+    mode: 0644

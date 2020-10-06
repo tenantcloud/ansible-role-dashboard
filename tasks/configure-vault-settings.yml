@@ -3,12 +3,14 @@
   copy:
     src: "files/vault-configuration"
     dest: "$HOME/.vault-configuration"
+    mode: 0644
 
 - name: Export PATH to vault configuration file
   lineinfile:
     dest: $HOME/.zshrc
     line: source $HOME/.vault-configuration
     state: present
+    mode: 0644
 
 - name: source zshrc
   command: /bin/zsh -c "source ~/.zshrc"

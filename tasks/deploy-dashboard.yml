@@ -7,8 +7,12 @@
 
 - name: Restart nginx
   become: true
+  become_method: sudo
   command: /usr/local/bin/brew services restart nginx-full
   changed_when: false
 
 - name: Copy info file
-  template: src=info.txt.j2 dest=$HOME/Desktop/home.{{ work_domain }}.txt
+  template:
+    src: info.txt.j2
+    dest: $HOME/Desktop/home.{{ work_domain }}.txt
+    mode: 0777
