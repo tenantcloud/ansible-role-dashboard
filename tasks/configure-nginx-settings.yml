@@ -31,14 +31,14 @@
 
 - name: Copy root private key certificate to minio folder
   copy:
-    src: /usr/local/etc/nginx/ssl/tenantcloud.dev.key
+    src: /usr/local/etc/nginx/ssl/{{ work_domain }}.key
     dest: $HOME/.minio/private.key
     mode: 0644
     remote_src: true
 
 - name: Copy root public key certificate to minio folder
   copy:
-    src: /usr/local/etc/nginx/ssl/tenantcloud.dev.crt
+    src: /usr/local/etc/nginx/ssl/{{ work_domain }}.crt
     dest: $HOME/.minio/public.crt
     mode: 0644
     remote_src: true
