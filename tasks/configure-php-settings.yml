@@ -46,11 +46,6 @@
     dest: /usr/local/etc/php/{{ php_release }}/conf.d/ext-xdebug.ini
     mode: 0644
 
-- name: Delete opcache
-  file:
-    path: /usr/local/etc/php/{{ php_release }}/conf.d/ext-opcache.ini
-    state: absent
-
 - name: Reinstall pkg-config
   command: brew reinstall pkg-config
   environment:
@@ -102,9 +97,3 @@
     creates: /usr/local/bin/composer
     warn: false
   changed_when: false
-
-- name: Run composer install hirak/prestissimo globally
-  composer:
-    command: require
-    global_command: true
-    arguments: hirak/prestissimo
