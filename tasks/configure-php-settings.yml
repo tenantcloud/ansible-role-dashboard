@@ -46,11 +46,6 @@
     dest: /usr/local/etc/php/{{ php_release }}/conf.d/ext-xdebug.ini
     mode: 0644
 
-- name: Delete opcache
-  file:
-    path: /usr/local/etc/php/{{ php_release }}/conf.d/ext-opcache.ini
-    state: absent
-
 - name: Reinstall pkg-config
   command: brew reinstall pkg-config
   environment:

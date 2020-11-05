@@ -14,4 +14,5 @@ protractor_path: "$HOME/{{ work_dir }}/home.{{ work_domain }}\
 git_hooks_path: "$HOME/{{ work_dir }}/home.{{ work_domain }}\
 /docs/installation/git-hooks"
 local_hosts_record: "127.0.0.1 home.{{ work_domain }}
- {{ work_domain }} www.{{ work_domain }}"
+ {{ work_domain }} www.{{ work_domain }} socket.{{ work_domain }}
+ minio.{{ work_domain }}"
