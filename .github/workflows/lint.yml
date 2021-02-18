@@ -8,9 +8,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: ansible-Lint
-        uses: ansible/ansible-lint-action@151b9a224f53c80fdc2c7aed08f3671d190e7a9e
+        uses: ansible/ansible-lint-action@master
         with:
           targets: "./"
           args: -x 106
+          override-deps: |
+            ansible==2.9
+            ansible-lint==4.2.0
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v1
