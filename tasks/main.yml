@@ -1,9 +1,7 @@
 ---
 - include: configure-dashboard.yml
 - include: configure-nginx-settings.yml
-- include: configure-php-settings.yml
 - include: docker-compose.yml
-- include: configure-mysql-settings.yml
 - include: configure-vault-settings.yml
 - include: configure-bcl-settings.yml
 - include: deploy-dashboard.yml

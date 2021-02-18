@@ -2,39 +2,35 @@ Congratulations, you have successfully installed home.{{ work_domain }} project.
 
  Ansible role for install home.{{ work_domain }} project.
 
-  - {{ mysql_database }}_dashboard
+  - tenantcloud_dashboard
 
-  URL Dashboard site    - https://home.{{ work_domain }}
-  URL Minio site        - https://home.{{ work_domain }}:9002
-  URL Socket site       - https://home.{{ work_domain }}:9090
-  URL Mailcatcher site  - http://127.0.0.1:1080
-  URL Supervisor site   - http://127.0.0.1:9001
+  URL Dashboard site     - https://home.{{ work_domain }}
+  URL Minio site         - https://minio.{{ work_domain }}
+  URL Mailcatcher site   - https://mail.{{ work_domain }}
+  URL Supervisor site    - https://supervisor.{{ work_domain }}
+  URL Elasticsearch site - https://elasticsearch.{{ work_domain }}
 
- In order to log in to the following services via the web, such logins and passwords are required:
+  After full install manually trusts root certificate in the system!
 
- Minio site  -> {{ minio_key }} - {{ minio_secret }}
- Socket site -> admin@{{ work_domain }} - Qwerty123
-
- Mysql server and database are used in the docker container, to connect to mysql server we use the command:
-
- mysql -u{{ mysql_admin_user }} -h127.0.0.1
+     - Run this command in the project directory:
+       sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain docs/installation/ssl/tenantcloud-rootCA.crt
 
  If you want to pull the latest changes, switch to the necessary branch and run the script,
  which can be found on the following path - {{ ansible_env.HOME }}/{{ work_dir }}/home.{{ work_domain }}/sh/update.sh
 
  If you want to run basic tests, run the following from the project folder:
 
-     - Run frontend test (carma):
-       npm run test
+     - Run frontend test:
+       yarn test
 
-     - Run backend test (phpunit):
-       vendor/bin/phpunit
+     - Run backend test:
+       docker-compose exec home vendor/bin/phpunit
 
-     * Before run e2e users test you must run webdriver:
+     * Before run e2e users test please pull all this containers:
 
-     - webdriver-manager clean && node_modules/webdriver-manager/bin/webdriver-manager \
-       update --versions.chrome=71.0.3578.80 && node_modules/webdriver-manager/bin/webdriver-manager \
-       start --versions.chrome=71.0.3578.80
+       docker pull selenoid/vnc:chrome_87.0
+       docker pull selenoid/vnc:firefox_83.0
+       docker pull selenoid/vnc:opera_71.0
 
-     - Run e2e users test (crawler):
-       protractor protractor.conf.js --crawler
+     - Run e2e users test:
+       docker-compose exec -T node /app/sh/pipeline/frontend_e2e.sh

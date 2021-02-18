@@ -1,35 +1,33 @@
 ---
-- name: Copy docker enviromment file
+- name: Copy nfs script file
   copy:
-    src: $HOME/{{ work_dir }}/{{ docker_dir }}/.env.example
-    dest: $HOME/{{ work_dir }}/{{ docker_dir }}/.env
-    mode: 0644
-    remote_src: true
+    src: "files/nfs.sh"
+    dest: "{{ project_path }}/docker/macos/nfs-from-ansible.sh"
+    mode: 0777
 
-- name: Change TC_DASHBOARD_DIR
-  lineinfile:
-    path: $HOME/{{ work_dir }}/{{ docker_dir }}/.env
-    regexp: '^TC_DASHBOARD_DIR='
-    line: 'TC_DASHBOARD_DIR=~/{{ work_dir }}/home.{{ work_domain }}'
-    mode: 0644
-
-- name: Change docker settings
-  lineinfile:
-    path: $HOME/.docker/config.json
-    regexp: '  "credsStore'
-    state: absent
-
-- name: Remove docker-credential-osxkeychain
-  file:
-    path: /usr/local/bin/docker-credential-osxkeychain
-    state: absent
-
-- name: Docker login (must "--no-include-email")
-  shell: "$(aws ecr get-login --region {{ aws_default_region }} --no-include-email)"    # yamllint disable-line rule:line-length
+- name: Run NFS configuration
+  become: true
+  become_user: "{{ ansible_user }}"
+  expect:
+    command: |
+      bash -lc "cd {{ project_path }} \
+      && docker/macos/nfs-from-ansible.sh"
+    responses:
+      "Password:": "{{ ansible_ssh_pass }}"
+    timeout: 90
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
 
+- name: Remove nfs script file
+  ansible.builtin.file:
+    path: "{{ project_path }}/docker/macos/nfs-from-ansible.sh"
+    state: absent
+
 - name: Start services via docker-compose
-  docker_compose:
-    project_src: $HOME/{{ work_dir }}/{{ docker_dir }}
+  command: |
+    bash -lc "cd {{ project_path }} \
+    && docker-compose up -d"
+  environment:
+    PATH: "{{ lookup('env','PATH') }}"
+  changed_when: false

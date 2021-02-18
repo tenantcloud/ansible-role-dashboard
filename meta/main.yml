@@ -14,6 +14,9 @@ galaxy_info:
       versions:
         - 10.14
         - 10.15
+        - 11.0
+        - 11.1
+        - 11.2
 
   galaxy_tags:
     - macos
