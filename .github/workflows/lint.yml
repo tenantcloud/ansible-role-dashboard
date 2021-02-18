@@ -12,8 +12,5 @@ jobs:
         with:
           targets: "./"
           args: -x 106
-          override-deps: |
-            ansible==2.9
-            ansible-lint==4.2.0
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v1

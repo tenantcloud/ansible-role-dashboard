@@ -17,9 +17,9 @@ fi
 _shell_name=${0##*/}
 
 if [[ $_shell_name == "bash" ]]; then
-  echo "COMPOSE_DOCKER_CLI_BUILD=true" >> ~/.bashrc
+  echo "export COMPOSE_DOCKER_CLI_BUILD=true" >> ~/.bashrc
 elif [[ $_shell_name == "zsh" ]]; then
-  echo "COMPOSE_DOCKER_CLI_BUILD=true" >> ~/.zshrc
+  echo "export COMPOSE_DOCKER_CLI_BUILD=true" >> ~/.zshrc
 fi
 
 if ! docker ps > /dev/null 2>&1 ; then
