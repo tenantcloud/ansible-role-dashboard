@@ -5,6 +5,16 @@
     dest: "{{ project_path }}/sh/install/docker-from-ansible.sh"
     mode: 0777
 
+- name: Run git lfs pull
+  command: |
+    bash -lc "cd {{ project_path }} \
+    && git lfs pull origin"
+  environment:
+    PATH: "{{ lookup('env','PATH') }}"
+  changed_when: false
+  tags:
+    - skip_ansible_lint
+
 - name: Run deploy dashboard script
   command: |
     bash -lc "cd {{ project_path }} \
