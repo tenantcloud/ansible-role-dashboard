@@ -11,6 +11,8 @@
     dest: "{{ project_path }}"
     version: "{{ dashboard_git_branch }}"
     force: true
+  environment:
+    PATH: "{{ lookup('env','PATH') }}"
 
 - name: Copy and setup TenantCloud dashboard environment file
   copy:
