@@ -21,8 +21,7 @@ docker-compose exec mysql mysql -h127.0.0.1 -uroot -proot \
   -e "GRANT SELECT, SHOW VIEW ON *.* TO 'read'@'%';"
 docker-compose exec mysql mysql -h127.0.0.1 -uroot -proot \
   -e "FLUSH PRIVILEGES;"
-docker run --rm -i --mount source=tc-"${DOCKER_APP_NAME:-home}"-nfsmount,target=/app tenantcloud/composer \
-  composer install --no-interaction --prefer-dist --optimize-autoloader
+docker-compose exec -T home composer install --no-interaction --prefer-dist --optimize-autoloader
 docker run --rm -i --network=tc-"${DOCKER_APP_NAME:-home}"-network --mount source=tc-"${DOCKER_APP_NAME:-home}"-nfsmount,target=/app \
   -w /app --entrypoint "/app/sh/install/minio.sh"  minio/mc:latest
 docker-compose exec -T home php artisan passport:keys
