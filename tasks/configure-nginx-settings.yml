@@ -1,60 +1,31 @@
 ---
-- name: Create nginx servers directory
-  file:
-    path: /usr/local/etc/nginx/servers
-    state: directory
-    mode: 0777
-
-- name: Create nginx ssl directory
-  file:
-    path: /usr/local/etc/nginx/ssl
-    state: directory
-    mode: 0777
-
-- name: Copy nginx configured files
-  template:
-    src: www.conf.j2
-    dest: /usr/local/etc/nginx/servers/home.{{ work_domain }}.conf
-    mode: 0644
-
-- name: Copy nginx ssl certificates
+- name: Copy prepare nginx script file
   copy:
-    src: $HOME/{{ work_dir }}/home.{{ work_domain }}/docs/installation/ssl
-    dest: /usr/local/etc/nginx
+    src: "files/nginx.sh"
+    dest: "{{ project_path }}/sh/install/nginx-from-ansible.sh"
     mode: 0777
-    remote_src: true
 
-- name: Add root certificate to trust
-  command: "{{ add_trusted_cert_command }}"
+- name: Start nginx
   become: true
+  become_method: sudo
+  command: /usr/local/bin/brew services start nginx
+  ignore_errors: true
   changed_when: false
 
-- name: Copy root private key certificate to minio folder
-  copy:
-    src: /usr/local/etc/nginx/ssl/{{ work_domain }}.key
-    dest: $HOME/.minio/private.key
-    mode: 0644
-    remote_src: true
-
-- name: Copy root public key certificate to minio folder
-  copy:
-    src: /usr/local/etc/nginx/ssl/{{ work_domain }}.crt
-    dest: $HOME/.minio/public.crt
-    mode: 0644
-    remote_src: true
-
-- name: Copy nginx ssl certificates to minio folder
-  copy:
-    src: /usr/local/etc/nginx/ssl/
-    dest: $HOME/.minio
-    mode: 0700
-    remote_src: true
-
-- name: Add hostname to hosts file
+- name: Run prepare nginx script
   become: true
-  lineinfile:
-    state: present
-    line: "{{ local_hosts_record }}"
-    create: true
-    dest: /etc/hosts
-    mode: 0644
+  become_user: "{{ ansible_user }}"
+  expect:
+    command: |
+      bash -lc "cd {{ project_path }} \
+      && sh/install/nginx-from-ansible.sh"
+    responses:
+      "Password:": "{{ ansible_ssh_pass }}"
+  environment:
+    PATH: "{{ lookup('env','PATH') }}"
+  changed_when: false
+
+- name: Remove prepare nginx script file
+  ansible.builtin.file:
+    path: "{{ project_path }}/sh/install/nginx-from-ansible.sh"
+    state: absent

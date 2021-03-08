@@ -1,15 +1,33 @@
 ---
-- name: Run deploy dashboard script
-  command: $HOME/{{ work_dir }}/home.{{ work_domain }}/sh/update.sh
+- name: Copy docker deploy script file
+  copy:
+    src: "files/docker.sh"
+    dest: "{{ project_path }}/sh/install/docker-from-ansible.sh"
+    mode: 0777
+
+- name: Run git lfs pull
+  command: |
+    bash -lc "cd {{ project_path }} \
+    && git lfs pull origin"
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
+  tags:
+    - skip_ansible_lint
 
-- name: Restart nginx
-  become: true
-  become_method: sudo
-  command: /usr/local/bin/brew services restart nginx-full
+- name: Run deploy dashboard script
+  command: |
+    bash -lc "cd {{ project_path }} \
+    && sh/install/docker-from-ansible.sh"
+  environment:
+    PATH: "{{ lookup('env','PATH') }}"
+  ignore_errors: true
   changed_when: false
+
+- name: Remove docker deploy script file
+  ansible.builtin.file:
+    path: "{{ project_path }}/sh/install/docker-from-ansible.sh"
+    state: absent
 
 - name: Copy info file
   template:

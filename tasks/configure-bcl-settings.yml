@@ -22,7 +22,9 @@
   changed_when: false
 
 - name: Run package installation
-  shell: cd $HOME/{{ work_dir }}/home.{{ work_domain }} && bcl package install
+  command: |
+    bash -lc "cd {{ project_path }} \
+    && bcl package install"
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   when: bcl_package_install
