@@ -11,12 +11,10 @@ if [[ -n $(sed -n -e "s/^DOCKER_APP_NAME=//p" .env ) ]]; then
   DOCKER_APP_NAME=$(sed -n -e "s/^DOCKER_APP_NAME=//p" .env )
 fi
 
-sleep 30
-
 docker-compose exec -T mysql mysql -h127.0.0.1 -uroot -proot \
-  -e "GRANT ALL PRIVILEGES ON *.* TO 'tenantcloud'@'%';" &&
+  -e "GRANT ALL PRIVILEGES ON *.* TO 'tenantcloud'@'%';"
 docker-compose exec -T mysql mysql -h127.0.0.1 -uroot -proot \
-  -e "FLUSH PRIVILEGES;" &&
+  -e "FLUSH PRIVILEGES;"
 docker-compose exec -T mysql mysql -h127.0.0.1 -uroot -proot \
   -e "CREATE USER 'read'@'%' IDENTIFIED BY 'read';"
 docker-compose exec -T mysql mysql -h127.0.0.1 -uroot -proot \
