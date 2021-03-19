@@ -9,11 +9,13 @@ Congratulations, you have successfully installed home.{{ work_domain }} project.
   URL Mailcatcher site   - https://mail.{{ work_domain }}
   URL Supervisor site    - https://supervisor.{{ work_domain }}
   URL Elasticsearch site - https://elasticsearch.{{ work_domain }}
+  URL Selenoid site      - https://selenoid.{{ work_domain }}
 
   After full install manually trusts root certificate in the system!
 
      - Run this command in the project directory:
-       sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain docs/installation/ssl/tenantcloud-rootCA.crt
+       bash -lc "cd {{ project_path }} && \
+       sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain docs/installation/ssl/tenantcloud-rootCA.crt"
 
  If you want to pull the latest changes, switch to the necessary branch and run the script,
  which can be found on the following path - {{ ansible_env.HOME }}/{{ work_dir }}/home.{{ work_domain }}/sh/update.sh
