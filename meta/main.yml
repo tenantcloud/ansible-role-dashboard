@@ -10,13 +10,10 @@ galaxy_info:
   min_ansible_version: 2.4
 
   platforms:
-    - name: MacOSX
+    - name: GenericUNIX
       versions:
-        - 10.14
-        - 10.15
-        - 11.0
-        - 11.1
-        - 11.2
+        - all
+        - any
 
   galaxy_tags:
     - macos
