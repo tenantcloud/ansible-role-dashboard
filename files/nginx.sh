@@ -14,7 +14,7 @@ fi
 echo "Set client_max_body_size to 512M"
 
 if ! grep -q "client_max_body_size 512M;" /usr/local/etc/nginx/nginx.conf; then
-  gsed -i 'http {/a client_max_body_size 512M;' /usr/local/etc/nginx/nginx.conf
+  gsed -i '/http {/a\    client_max_body_size 512M;' /usr/local/etc/nginx/nginx.conf
 fi
 
 echo "Create nginx ssl directory if doesn't exist"
