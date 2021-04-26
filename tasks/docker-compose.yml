@@ -13,7 +13,7 @@
       bash -lc "cd {{ project_path }} \
       && docker/macos/nfs-from-ansible.sh"
     responses:
-      "Password:": "{{ ansible_ssh_pass }}"
+      "Password:": "{{ ansible_pass }}"
     timeout: 90
   environment:
     PATH: "{{ lookup('env','PATH') }}"
