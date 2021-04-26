@@ -20,7 +20,7 @@
       bash -lc "cd {{ project_path }} \
       && sh/install/nginx-from-ansible.sh"
     responses:
-      "Password:": "{{ ansible_ssh_pass }}"
+      "Password:": "{{ ansible_pass }}"
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   changed_when: false
