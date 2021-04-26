@@ -24,7 +24,7 @@
 - name: Run package installation
   command: |
     bash -lc "cd {{ project_path }} \
-    && bcl package install"
+    && ~/.local/bin/bcl package install"
   environment:
     PATH: "{{ lookup('env','PATH') }}"
   when: bcl_package_install
