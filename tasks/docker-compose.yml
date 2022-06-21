@@ -2,7 +2,7 @@
 - name: Copy nfs script file
   copy:
     src: "files/nfs.sh"
-    dest: "{{ project_path }}/docker/macos/nfs-from-ansible.sh"
+    dest: "{{ project_path }}/sh/install/nfs-from-ansible.sh"
     mode: 0777
 
 - name: Run NFS configuration
@@ -11,7 +11,7 @@
   expect:
     command: |
       bash -lc "cd {{ project_path }} \
-      && docker/macos/nfs-from-ansible.sh"
+      && sh/install/nfs-from-ansible.sh"
     responses:
       "Password:": "{{ ansible_pass }}"
     timeout: 90
@@ -21,7 +21,7 @@
 
 - name: Remove nfs script file
   ansible.builtin.file:
-    path: "{{ project_path }}/docker/macos/nfs-from-ansible.sh"
+    path: "{{ project_path }}/sh/install/nfs-from-ansible.sh"
     state: absent
 
 - name: Start services via docker-compose
